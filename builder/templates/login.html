@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %} // sign up{% endblock title %}
+{% block header %}
+{% endblock header %}
+{% block container %}
+    <div class="logo-big-wrapper">
+        <div class="row text-center">
+            <div class="medium-12 columns">
+                <img class="logo-big" src="{% static "imgs/logo-black-hover.png" %}" />
+            </div>
+        </div>
+    </div>
+    <form class="form-signup" method="post" action="">
+        {% csrf_token %}
+        <div class="row text-center">
+            <div class="medium-4 medium-offset-4 end columns">
+                {{ signup_form.username }}
+                {% if signup_form.username.errors %}
+                    {{ signup_form.username.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="medium-4 medium-offset-4 end columns">
+                {{ signup_form.email }}
+                {% if signup_form.email.errors %}
+                    {{ signup_form.email.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="medium-4 medium-offset-4 end columns">
+                {{ signup_form.email_check }}
+                {% if signup_form.email_check.errors %}
+                    {{ signup_form.email_check.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="medium-4 medium-offset-4 end columns">
+                {{ signup_form.password }}
+                {% if signup_form.password.errors %}
+                    {{ signup_form.password.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="medium-4 medium-offset-4 end columns">
+                {{ signup_form.password_check }}
+                {% if signup_form.password_check.errors %}
+                    {{ signup_form.password_check.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row text-left">
+            <div class="medium-4 medium-offset-4 end columns small">
+                By clicking Sign Up, you agree to our 
+                <a href="#" target="_blank">Terms of Service</a>.
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="medium-4 medium-offset-4 end columns">
+                <input class="button-form white font-light" type="submit" value="Sign Up" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="medium-4 medium-offset-4 end columns">
+                If you already have an account, <a href="#">Login</a> here.
+            </div>
+        </div>
+        <div class="row">
+            <div class="safe small text-left medium-4 medium-offset-4 end columns lightgrey">
+                We will not share any of your account information with anyone.
+                Not even affiliates or marketing companies.
+            </div>
+        </div>
+    </form>
+{% endblock container %}

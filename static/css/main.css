@@ -1,0 +1,192 @@
+body {
+    font-family: CircularLight, Helvetica, Arial, sans-serif;
+}
+
+#header {
+    background-color: #141414;
+    border-color: #2e2f33
+    height: 60px;
+    padding: 10px;
+    font-family: Circular, Helvetica, Arial, sans-serif;
+}
+
+#header-links {
+    margin-top: 10px;
+}
+
+#header-links a, .header-links a:visited {
+    margin-left: 30px;
+}
+
+#header-links a:hover {
+    color: #1ead29;
+}
+
+/****************** CUSTOM TEMPLATES *****************/
+::-webkit-input-placeholder {
+    color: #aaa;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #aaa;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #aaa;  
+}
+
+:-ms-input-placeholder {  
+    color: #aaa;  
+}
+
+.small {
+    font-size: 12px;
+}
+
+.white {
+    color: #f8f8f8;
+}
+
+.lightgrey {
+    color: #bbb;
+}
+
+.font-light {
+    font-family: Circular, Helvetica, Arial, sans-serif;
+}
+
+.safe {
+    border-top: solid 1px #ddd;
+    padding: 20px;
+}
+
+/******************* SIGNUP FORM *********************/
+.form-signup .row {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.form-signup .errorlist {
+    margin: 0px auto;
+    color: #bd3200;
+    font-size: 13px;
+    list-style: none;
+    text-align: left;
+    margin-top: 5px;
+}
+
+.form-signup input {
+    border-radius: 5px;
+    height: 50px;
+    margin: 0px auto;
+}
+
+.button-form {
+    background-color: #2ebd59;
+    border: none;
+    width: 100%;
+}
+
+.button-form:hover {
+    background-color: #1ead29;
+}
+/***************************************************/
+
+.logo {
+    background: url('/static/imgs/logo.png') no-repeat;
+    background-size: 100px 43px;
+    width: 100px;
+    height: 43px;
+    display: block;
+}
+
+.logo:hover {
+    background: url('/static/imgs/logo-hover.png') no-repeat;
+    background-size: 100px 43px;
+    width: 100px;
+    height: 43px;
+    display: block;
+}
+
+.logo-big {
+    width: 200px;
+    height: 86px;
+}
+
+.logo-big-wrapper {
+    border-bottom: solid 1px #ddd;
+    padding: 20px;
+}
+
+.row {
+    max-width: 1200px;
+}
+
+#banner {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-size: cover;
+    border: solid 1px black;
+    text-align: center;
+    overflow: hidden;
+}
+
+#title-container {
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+@font-face {
+    font-family: Circular; 
+    src: url('/static/fonts/circular-bold.woff');
+}
+
+@font-face {
+    font-family: CircularLight; 
+    src: url('/static/fonts/circular-light.woff');
+}
+
+.butt, .butt:visited {
+    border-radius: 5px;
+    transition: all 0.15s ease 0s;
+    color: #f8f8f8;
+}
+
+.butt:hover {
+    background: #1ead29;
+    color: #f8f8f8;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.butt-huge {
+    background: #2ebd59;
+    padding: 20px 30px;
+    font-size: 36px;
+    color: #f8f8f8;
+
+}
+
+#title {
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 600;
+    color: #f8f8f8;
+    -webkit-text-shadow: 2px 2px #222;
+    -moz-text-shadow: 2px 2px #222;
+    text-shadow: 2px 2px #222;
+}
+
+#subtitle {
+    font-family: CircularLight, Helvetica, Arial, sans-serif;
+    color: #e8e8e8;
+    line-height: 1.2;
+    font-size: 32px;
+    font-weight: 200;
+}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %} // home{% endblock title %}
+{% block container %}
+<div id="banner" data-interchange="[{% static 'imgs/bg-small.png' %}, (small)], [{% static 'imgs/bg.png' %}, (medium)], [{% static 'imgs/bg.png' %}, (large)]">
+    <div id="title-container" class="row">
+        <div class="medium-8 medium-offset-2 columns end" style="">
+            <div class="row">
+                <div class="medium-12 columns">
+                    <h1 id="title">Create a website for your business in 5 minutes.</h1>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="medium-12 columns">
+                    <h3 id="subtitle">Grow. Build. You'll love it.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="button-container medium-12 columns">
+                    <a class="butt butt-huge" href="#">Start Building</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock container %}
