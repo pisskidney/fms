@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 
 User = get_user_model()
 
@@ -80,17 +80,24 @@ class SignupForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=90)
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(
+        max_length=90,
+        widget=forms.TextInput(attrs={'placeholder': 'Username'}),
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}),
+    )
     remember = forms.BooleanField(
-        required=False, widget=forms.CheckboxInput,
+        required=False,
+        widget=forms.CheckboxInput,
     )
 
     def clean(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
-        user = authenticate(username, password)
-        if (email and password and not user):
+        user = authenticate(username=username, password=password)
+        print user
+        if (username and password and user is None):
             raise forms.ValidationError(
                 "Please enter a correct username and password"
             )
@@ -100,6 +107,6 @@ class LoginForm(forms.Form):
         if not self.is_valid():
             raise ValueError(self.error_messages['invalid_form'])
         return authenticate(
-            self.cleaned_data['username'],
-            self.cleaned_data['password']
+            username=self.cleaned_data['username'],
+            password=self.cleaned_data['password']
         )
