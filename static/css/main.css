@@ -48,7 +48,7 @@ body {
 }
 
 .lightgrey {
-    color: #bbb;
+    color: #aaa;
 }
 
 .font-light {
@@ -61,9 +61,21 @@ body {
 }
 
 /******************* SIGNUP FORM *********************/
-.form-signup .row {
+.form-signup > #remember {
+    height: 20px;
+}
+
+.form-signup #remember label {
+    height: 40px; 
+}
+
+.form-signup #remember #id_remember {
+    height: 20px; 
+}
+
+.form-signup > .row {
     text-align: center;
-    margin: 20px auto;
+    margin: 20px auto 0px auto;
 }
 
 .form-signup .errorlist {
