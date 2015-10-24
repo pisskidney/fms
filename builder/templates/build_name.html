@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %} // build{% endblock title %}
+{% block container %}
+    <form class="form-build" method="POST" action="">
+        {% csrf_token %}
+        <div class="row">
+            <div class="form-delimit medium-6 medium-offset-3 end">
+                <strong class="font">
+                    Website name
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-6 medium-offset-3 end">
+                <label for="id_name">
+                    Choose a website name. Try to be concise.
+                </label>
+                {{ build_name_form.name }}
+                {% if build_name_form.name.errors %}
+                    {{ build_name_form.name.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-2 medium-offset-7 end">
+                <input class="button-form" type="submit" value="Next">
+            </div>
+        </div>
+    </form>
+{% endblock container %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %} // build{% endblock title %}
+{% block container %}
+    <form id="form-build" method="POST" action="">
+        {% csrf_token %}
+        <div class="row">
+            <div class="form-delimit medium-6 medium-offset-3 end">
+                <strong class="font">
+                    Home page
+                </strong>
+            </div>
+        </div>
+        {% for field in build_home_form %}
+            <div class="row">
+                <div class="columns medium-4 medium-offset-4 end">
+                    {{ field }}
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div class="columns medium-4 medium-offset-4 end">
+                <input type="submit" value="submit">
+            </div>
+        </div>
+    </form>
+{% endblock container %}
