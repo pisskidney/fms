@@ -4,18 +4,19 @@ body {
 
 #header {
     background-color: #141414;
-    border-color: #2e2f33
+    border-color: #2e2f33;
     height: 60px;
-    padding: 10px;
     font-family: Circular, Helvetica, Arial, sans-serif;
 }
 
 #header-links {
-    margin-top: 10px;
+    background-color: #141414;
+    padding-top: 20px;
+    height: 60px;
 }
 
 #header-links a, .header-links a:visited {
-    margin-left: 30px;
+    margin-left: 25px;
 }
 
 #header-links a:hover {
@@ -51,7 +52,19 @@ body {
     color: #aaa;
 }
 
+.darkgrey {
+    color: #333;
+}
+
+.grey {
+    color: #777;
+}
+
 .font-light {
+    font-family: CircularLight, Helvetica, Arial, sans-serif;
+}
+
+.font {
     font-family: Circular, Helvetica, Arial, sans-serif;
 }
 
@@ -103,6 +116,10 @@ body {
     background-color: #1ead29;
 }
 /***************************************************/
+
+.logo-header {
+    margin-top: 10px;
+}
 
 .logo {
     background: url('/static/imgs/logo.png') no-repeat;
@@ -202,3 +219,104 @@ body {
     font-size: 32px;
     font-weight: 200;
 }
+
+.button-form {
+    background-color: #2ebd59;
+    border: none;
+    transition: all 0.15s ease 0s;
+    width: 100%;
+    color: #f8f8f8;
+    border-radius: 5px;
+}
+
+.button-form:hover {
+    background-color: #1ead29;
+}
+
+/******************* BUILD FORM *********************/
+#build-name-domain-options {
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    display: none;
+    background-color: #f6f6f6;
+}
+
+#build-name-domain-options b {
+    color: #1ead29;
+}
+
+.build-name-price {
+    color: #324e51;
+}
+
+#build-name-domain-options input {
+    height: 40px;
+    width: 100px;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.build-name-button {
+    margin-top: 5px;
+}
+
+.build-name-domain-status {
+    font-size: 9px;
+    font-family: Helvetica, Arial;
+    font-weight: bold;
+}
+
+.build-name-title {
+    font-size: 14px;
+}
+
+.build-name-subtitle {
+    font-size: 14px;
+}
+
+.build-name-domain-options-group {
+    -webkit-box-shadow: 1px 1px #bbb;
+    -moz-box-shadow: 1px 1px #bbb;
+    box-shadow: 1px 1px #bbb;
+    border: solid 1px #ccc;
+    margin: 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.build-name-url {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.form-delimit {
+    border-bottom: solid 1px #ddd;
+    text-align: center;
+    margin: 20px auto;
+    padding: auto 20px;
+}
+
+.form-delimit strong {
+    padding: 0px 20px;
+    background: #fff;
+    letter-spacing: 1px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.form-build .errorlist {
+    margin: 0px auto;
+    color: #bd3200;
+    font-size: 13px;
+    list-style: none;
+    text-align: left;
+}
+
+.form-build input {
+    border-radius: 5px;
+    height: 50px;
+    margin: 0;
+}
+
+/****************************************************/

@@ -35,8 +35,7 @@ class SignupView(View):
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
-            return redirect('index')
+        logout(request)
         login_form = LoginForm()
         return render(request, 'login.html', {
             'login_form': login_form
@@ -54,6 +53,9 @@ class LoginView(View):
         user = login_form.get_user()
         login(request, user)
         #@TODO from settings
-        request.session.set_expiry(60*60*24*7)
+        if login_form.is_remember():
+            request.session.set_expiry(60*60*24*30)
+        else:
+            request.session.set_expiry(60*60*24)
         #@TODO from settings
         return redirect('account')

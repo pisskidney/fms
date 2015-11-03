@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block title %} // build{% endblock title %}
 {% block container %}
-    <form class="form-build" method="POST" action="">
+    <form method="POST" action="">
         {% csrf_token %}
         <div class="row">
             <div class="form-delimit medium-6 medium-offset-3 end">
@@ -23,8 +23,113 @@
             </div>
         </div>
         <div class="row">
-            <div class="columns medium-2 medium-offset-7 end">
-                <input class="button-form" type="submit" value="Next">
+            <div class="columns medium-6 medium-offset-3 end text-left">
+                <div id="build-name-domain-options">
+                    <div class="build-name-domain-options-group">
+                        <div class="row">
+                            <div class="build-name-title columns large-10 font darkgrey">
+                                <!-- @TODO hardcoded website name -->
+                                Use a subdomain of Fivedt.com
+                            </div>
+                            <div class="columns large-2 text-right build-name-price font">
+                                Free
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="build-name-subtitle grey columns large-12">
+                                Great way to start building your website. And it's completely free.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="columns large-7">
+                                <div class="build-name-url font text-center">
+                                    <b>example</b>.Fivedt.com
+                                </div>
+                            </div>
+                            <div class="columns large-2 text-right">
+                                <div class="row">
+                                    <div class="columns large-12">
+                                        <img src="{% static "imgs/loading.gif" %}" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="build-name-domain-status columns large-12">
+                                        checking
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns large-3 text-right build-name-button">
+                                <input disabled class="button-form" type="submit" value="Choose">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="build-name-domain-options-group">
+                        <div class="row">
+                            <div class="build-name-title columns large-9 font darkgrey">
+                                <!-- @TODO hardcoded website name -->
+                                Use a custom domain
+                            </div>
+                            <div class="columns large-3 text-right build-name-price font">
+                                <!-- @TODO hardcoded price --!>
+                                4.99$/month
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="build-name-subtitle grey columns large-12">
+                                Choose this option if you want a more uniquely tailored website.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="columns large-7">
+                                <div class="build-name-url font text-center">
+                                    www.<b>example</b>.com
+                                </div>
+                            </div>
+                            <div class="columns large-2 text-right">
+                                <div class="row">
+                                    <div class="columns large-12">
+                                        <img src="{% static "imgs/loading.gif" %}" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="build-name-domain-status columns large-12">
+                                        checking
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns large-3 text-right build-name-button">
+                                <input class="button-form" type="submit" value="Choose">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="build-name-domain-options-group">
+                        <div class="row">
+                            <div class="build-name-title columns large-9 font darkgrey">
+                                <!-- @TODO hardcoded website name -->
+                                Use a domain you already own
+                            </div>
+                            <div class="columns large-3 text-right build-name-price font">
+                                <!-- @TODO hardcoded price --!>
+                                3.99$/month
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="build-name-subtitle grey columns large-12">
+                                Connect the domain you already own to the website you will build here.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="columns large-7">
+                                <div class="build-name-url font text-center">
+                                    www.<b>example</b>.com
+                                </div>
+                            </div>
+                            <div class="columns large-3 large-offset-2 text-right build-name-button">
+                                <input class="button-form" type="submit" value="Choose">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
