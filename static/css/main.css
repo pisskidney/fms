@@ -234,6 +234,17 @@ body {
 }
 
 /******************* BUILD FORM *********************/
+
+#id_name {
+    border-radius: 5px;
+    height: 50px;
+    border-width: 2px;
+    border-color: #324e51;
+    background: url('/static/imgs/find.png') no-repeat 10px;
+    padding-left: 50px;
+
+}
+
 #build-name-domain-options {
     border: solid 1px #ccc;
     border-radius: 5px;
@@ -264,6 +275,7 @@ body {
     font-size: 9px;
     font-family: Helvetica, Arial;
     font-weight: bold;
+    text-transform: capitalize;
 }
 
 .build-name-title {

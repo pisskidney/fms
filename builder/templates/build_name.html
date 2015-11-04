@@ -46,14 +46,16 @@
                                     <b>example</b>.Fivedt.com
                                 </div>
                             </div>
-                            <div class="columns large-2 text-right">
+                            <div class="columns large-2 text-center">
                                 <div class="row">
                                     <div class="columns large-12">
-                                        <img src="{% static "imgs/loading.gif" %}" />
+                                        <img id ="build-name-img-inhouse-check" src="{% static "imgs/loading.gif" %}" />
+                                        <img id ="build-name-img-inhouse-ok" src="{% static "imgs/ok.png" %}" />
+                                        <img id ="build-name-img-inhouse-bad" src="{% static "imgs/bad.png" %}" />
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="build-name-domain-status columns large-12">
+                                    <div id="build-name-inhouse-status" class="build-name-domain-status columns large-12 text-center">
                                         checking
                                     </div>
                                 </div>
@@ -85,14 +87,16 @@
                                     www.<b>example</b>.com
                                 </div>
                             </div>
-                            <div class="columns large-2 text-right">
+                            <div class="columns large-2 text-center">
                                 <div class="row">
                                     <div class="columns large-12">
-                                        <img src="{% static "imgs/loading.gif" %}" />
+                                        <img id ="build-name-img-com-check" src="{% static "imgs/loading.gif" %}" />
+                                        <img id ="build-name-img-com-ok" src="{% static "imgs/ok.png" %}" />
+                                        <img id ="build-name-img-com-bad" src="{% static "imgs/bad.png" %}" />
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="build-name-domain-status columns large-12">
+                                    <div id="build-name-com-status" class="build-name-domain-status columns large-12 text-center">
                                         checking
                                     </div>
                                 </div>
@@ -124,7 +128,7 @@
                                     www.<b>example</b>.com
                                 </div>
                             </div>
-                            <div class="columns large-3 large-offset-2 text-right build-name-button">
+                            <div class="text-right columns large-3 large-offset-2 build-name-button">
                                 <input class="button-form" type="submit" value="Choose">
                             </div>
                         </div>
