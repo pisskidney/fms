@@ -26,7 +26,7 @@ $(function(){
                 $('#build-name-img-inhouse-bad').show()
                 $('#build-name-inhouse-status').html('taken')
             }
-            if (resp['com'] == true) {
+            if (resp['.com'] == true) {
                 $('#build-name-img-com-ok').show()
                 $('#build-name-img-com-bad').hide()
                 $('#build-name-com-status').html('available')

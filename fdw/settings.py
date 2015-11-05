@@ -109,6 +109,7 @@ STATIC_URL = '/static/'
 
 dirr = os.path.dirname
 STATICFILES_DIRS = (
-    os.path.join(dirr(dirr(os.path.realpath(__file__))), 'static'),
+    os.path.join(BASE_DIR, 'static'),
 )
-print STATICFILES_DIRS
+STATICFILES_DIR = os.path.join(BASE_DIR, 'static')
+UPLOADS_DIR = os.path.join(STATICFILES_DIR, 'uploads')

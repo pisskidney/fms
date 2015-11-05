@@ -2,6 +2,7 @@ from django.views.generic.base import View
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
+from django.conf import settings
 from builder.forms import BuildHomeForm, BuildNameForm
 
 
@@ -13,7 +14,7 @@ class BuildHomeView(View):
         })
 
     def post(self, request, *args, **kwargs):
-        build_home_form = BuildHomeForm(request.POST)
+        build_home_form = BuildHomeForm(request.POST, request.FILES)
         if not build_home_form.is_valid():
             return render(
                 request, 'build_home.html', {
@@ -21,6 +22,10 @@ class BuildHomeView(View):
                 },
                 status=400
             )
+        #@TODO hardcoded path
+        with open(settings.UPLOADS_DIR, 'w+') as dest:
+            for chunk in request.FILES['background']:
+                dest.write(chunk)
         return redirect('account')
 
 
@@ -40,4 +45,4 @@ class BuildNameView(View):
                 },
                 status=400
             )
-        return redirect('account')
+        return redirect('build_home')

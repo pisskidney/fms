@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model, authenticate
+from helpers import get_domain_manager
 
 User = get_user_model()
 
@@ -146,6 +147,55 @@ class BuildNameForm(forms.Form):
             attrs={'placeholder': 'Website name or keyword'}
         ),
     )
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if 'inhouse' in self.data:
+            # Check if the chosen name is indeed free as a subdomain
+            pass
+
+        elif 'com' in self.data:
+            # Check if the domain is indeed available
+            key = name + '.com'
+            DomainManager = get_domain_manager()
+            dm = DomainManager([key])
+            dm.check_domains()
+            if not dm.is_valid(key):
+                raise forms.ValidationError(
+                    'The domain you selected is not available'
+                )
+        else:
+            #@TODO streamline error logging
+            raise forms.ValidationError('Unexpected error occured. #0001')
+        return self.cleaned_data['name']
+
+    def clean(self):
+        return self.cleaned_data
+
+
+class BuildHomeForm(forms.Form):
+    title = forms.CharField(
+        required=True,
+        max_length=255,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Title'}
+        ),
+    )
+    motto = forms.CharField(
+        required=False,
+        max_length=1024,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Motto'}
+        ),
+    )
+    description = forms.CharField(
+        required=False,
+        max_length=2048,
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Detailed description'}
+        ),
+    )
+    background = forms.ImageField()
 
     def clean(self):
         return self.cleaned_data
