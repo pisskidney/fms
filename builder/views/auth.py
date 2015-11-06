@@ -57,5 +57,8 @@ class LoginView(View):
             request.session.set_expiry(60*60*24*30)
         else:
             request.session.set_expiry(60*60*24)
-        #@TODO from settings
-        return redirect('account')
+
+        next_url = 'account'
+        if 'next' in request.GET:
+            next_url = request.GET['next']
+        return redirect(next_url)

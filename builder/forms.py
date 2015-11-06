@@ -115,30 +115,6 @@ class LoginForm(forms.Form):
         return self.cleaned_data['remember']
 
 
-class BuildHomeForm(forms.Form):
-    home_name = forms.CharField(
-        required=True,
-        max_length=90,
-        widget=forms.TextInput(attrs={'placeholder': 'Website name'}),
-    )
-    home_logo = forms.URLField(
-        required=False,
-        max_length=90,
-        widget=forms.TextInput(attrs={'placeholder': 'Logo URL'}),
-    )
-    home_logo_upload = forms.FileField(
-        required=False,
-    )
-    home_description = forms.CharField(
-        required=True,
-        max_length=2000,
-        widget=forms.Textarea,
-    )
-
-    def clean(self):
-        return self.cleaned_data
-
-
 class BuildNameForm(forms.Form):
     name = forms.CharField(
         required=True,
