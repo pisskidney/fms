@@ -2,28 +2,75 @@
 {% load staticfiles %}
 {% block title %} // build{% endblock title %}
 {% block container %}
-    <form id="form-build" enctype="multipart/form-data" method="POST" action="">
+    <form id="form-build-home" class="form-build" enctype="multipart/form-data" method="POST" action="">
         {% csrf_token %}
         <div class="row">
-            <div class="form-delimit medium-6 medium-offset-3 end">
+           <div class="medium-6 medium-offset-3 end">
+               Don't worry too much about what you write here. You will be able
+               to change everything any time you wish.
+            </div>
+        </div>
+        <div class="row">
+           <div class="form-delimit medium-6 medium-offset-3 end">
                 <strong class="font">
                     Home page
                 </strong>
             </div>
         </div>
-        {% for field in build_home_form %}
-            <div class="row">
-                <div class="columns medium-4 medium-offset-4 end">
-                    {{ field }}
-                    {% if field.errors %}
-                        {{ field.errors }}
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
         <div class="row">
-            <div class="columns medium-4 medium-offset-4 end">
-                <input type="submit" value="submit">
+            <div class="columns medium-6 medium-offset-3 end">
+                <label for="id_title">
+                    Choose a website title
+                </label>
+                {{ build_home_form.title }}
+                {% if build_home_form.title.errors %}
+                    {{ build_home_form.title.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-6 medium-offset-3 end">
+                <label for="id_motto">
+                    Website motto. (optional)
+                </label>
+                {{ build_home_form.motto }}
+                {% if build_home_form.motto.errors %}
+                    {{ build_home_form.motto.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-6 medium-offset-3 end">
+                <label for="id_motto">
+                    Website description (optional)
+                </label>
+                {{ build_home_form.description }}
+                {% if build_home_form.description.errors %}
+                    {{ build_home_form.description.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-6 medium-offset-3 end">
+                <label for="id_background">
+                    Upload a background image (min-width: 1024px, min-height: 480px)
+                </label>
+                {{ build_home_form.background }}
+                {% if build_home_form.background.errors %}
+                    {{ build_home_form.background.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-delimit medium-6 medium-offset-3 end">
+                <strong class="font">
+                    OR
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-2 medium-offset-5 end">
+                <input class="button-form" type="submit" value="Next">
             </div>
         </div>
     </form>

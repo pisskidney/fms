@@ -153,22 +153,29 @@ class BuildHomeForm(forms.Form):
     title = forms.CharField(
         required=True,
         max_length=255,
+        label='fffs',
         widget=forms.TextInput(
-            attrs={'placeholder': 'Title'}
+            attrs={'placeholder': 'ex: Vandelay Industries'}
         ),
     )
     motto = forms.CharField(
         required=False,
         max_length=1024,
         widget=forms.TextInput(
-            attrs={'placeholder': 'Motto'}
+            attrs={'placeholder': 'ex: Where latex meets science and design'}
         ),
     )
     description = forms.CharField(
         required=False,
         max_length=2048,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Detailed description'}
+        widget=forms.Textarea(
+            attrs={'placeholder': (
+                'Vandelay Industries has been the leading manufacturer of '
+                'latex for over a decade. \nStarted in 2003, it quicly grew '
+                'to the size and marketshare we see today.\n\nThis is how you '
+                'make a title\n====================\nUnderline the desired '
+                'text with *equals* signs. It will highlight the text.'
+            )},
         ),
     )
     background = forms.ImageField()
