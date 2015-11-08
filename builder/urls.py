@@ -13,6 +13,7 @@ urlpatterns = patterns(
     url(r'account/$', login_required(views.AccountView.as_view()), name='account'),
     url(r'api/([0-9a-zA-Z]+)$', views.CheckDomainView.as_view(), name='checkdomain'),
     url(r'build/1$', views.BuildNameView.as_view(), name='build_name'),
-    url(r'build/2/(?P<id>[1-9]+[0-9]*)$', views.BuildHomeView.as_view(), name='build_home'),
+    url(r'build/2/(?P<id>[1-9]+[0-9]*)$', views.BuildThemeView.as_view(), name='build_theme'),
+    url(r'build/3/(?P<id>[1-9]+[0-9]*)$', views.BuildHomeView.as_view(), name='build_home'),
     url(r'payment/(?P<id>[1-9]+[0-9]*)$', login_required(views.PaymentView.as_view()), name='payment'),
 )

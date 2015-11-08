@@ -265,6 +265,155 @@ body {
     text-transform: uppercase;
     font-weight: 700;
 }
+/******************* BUILD THEME FORM *********************/
+#form-build-theme .row {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#build-theme-colors .build-theme-color {
+    display: block-inline;
+    float: left;
+    width: 20%;
+    height: 50px;
+}
+
+#build-theme-colors .build-theme-color-wrap {
+    border: solid 1px #aaa;
+    width: 100%;
+    height: 52px;
+}
+
+#build-theme-colors {
+    margin-top: 0px;
+}
+
+#build-theme-colors .selected {
+    border: solid 2px #324e59;
+}
+
+#build-theme-colors li {
+    padding: 5px;
+    border: solid 2px #fff;
+    height: 80px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+#build-theme-colors li:hover {
+    border: solid 2px #324e59;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.build-theme-name {
+    font-size: 12px;
+}
+
+#build-theme-bg-images img {
+    width: 75px;
+}
+
+#build-theme-bg-images .selected {
+    border: solid 2px #324e59;
+}
+
+#build-theme-bg-topics .active {
+    color: #f8f8f8;
+    background-color: #324e59;
+}
+
+#build-theme-bg-topics {
+    list-style: none;
+    margin: 0;
+}
+
+#build-theme-bg-topics li {
+    padding-left: 5px;
+    font-size: 12px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+#build-theme-bg-topics li:hover {
+    cursor: hand;
+    cursor: pointer;
+}
+
+#build-theme-bg-images li {
+    text-align: center;
+    padding-top: 10px;
+    border: solid 2px #fff;
+    border-radius: 5px;
+}
+
+#build-theme-bg-images li:hover {
+    border: solid 2px #324e59;
+    cursor: hand;
+    cursor: pointer;
+}
+
+#build-theme-preview {
+    border: solid 2px #324e59;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#build-theme-preview .row {
+    margin: 0;
+}
+
+#build-theme-preview #build-theme-preview-nav {
+    padding: 5px 0;
+    background-color: #000;
+    color: #fff;
+    font-size: 8px;
+    border-top: solid 1px #000;
+    border-left: solid 1px #000;
+    border-right: solid 1px #000;
+}
+
+#build-theme-preview #build-theme-preview-nav-logo {
+    border: solid 1px #4e3d2a;
+    border-radius: 6px;
+}
+
+#build-theme-preview #build-theme-preview-header-wrapper {
+    min-height: 150px;
+    background-size: cover;
+}
+
+#build-theme-preview #build-theme-preview-header-title {
+    margin-top: 5%;
+    font-size: 30px;
+    font-weight: 600;
+    color: #f8f8f8;
+    -webkit-text-shadow: 2px 2px #222;
+    -moz-text-shadow: 2px 2px #222;
+    text-shadow: 2px 2px #222;
+}
+
+#build-theme-preview #build-theme-preview-header-subtitle {
+    -webkit-text-shadow: 1px 1px #222;
+    -moz-text-shadow: 1px 1px #222;
+    text-shadow: 1px 1px #222;
+    font-size: 16px;
+    color: #e8e8e8;
+    line-height: 1.2;
+    font-weight: 200;
+}
+
+#build-theme-preview #build-theme-preview-header-button {
+    border-radius: 5px;
+    color: #f8f8f8;
+    background: #2ebd59;
+    padding: 2px 5px;
+    font-size: 8px;
+    margin-top: 5px;
+}
+
+#build-theme-preview #build-theme-preview-body {
+    font-size: 8px;
+}
 /******************* BUILD HOME FORM *********************/
 .form-build #id_background {
     height: 25px;
@@ -278,8 +427,6 @@ body {
     font-size: 12px;
 }
 
-.form-build > .row > .columns {
-}
 /******************* BUILD NAME FORM *********************/
 #form-build-home ::-webkit-input-placeholder {
     color: #ccc;

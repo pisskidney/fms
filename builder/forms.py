@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model, authenticate
 from helpers import get_domain_manager
+from models import Theme, Image
 
 User = get_user_model()
 
@@ -172,13 +173,53 @@ class BuildHomeForm(forms.Form):
             attrs={'placeholder': (
                 'Vandelay Industries has been the leading manufacturer of '
                 'latex for over a decade. \nStarted in 2003, it quicly grew '
-                'to the size and marketshare we see today.\n\nThis is how you '
-                'make a title\n====================\nUnderline the desired '
-                'text with *equals* signs. It will highlight the text.'
+                'to the monolith it is today.'
             )},
         ),
     )
-    background = forms.ImageField()
+
+    def clean(self):
+        return self.cleaned_data
+
+
+class BuildThemeForm(forms.Form):
+    theme = forms.CharField(
+        required=True,
+        max_length=1,
+        widget=forms.HiddenInput(),
+    )
+    background_preset = forms.CharField(
+        required=False,
+        max_length=2048,
+        widget=forms.HiddenInput(),
+    )
+    background_upload = forms.ImageField(
+        required=False,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(BuildThemeForm, self).__init__(*args, **kwargs)
+        # Set images as a dict of dict of list of dicts
+        # {'nature': [{'thumbnail': 'dasdasd.jpg', 'full': 'dasd.jpg'}, {'...
+        images = Image.objects.filter(
+            type__exact=('bg'))
+        self.images = {}
+        for image in images:
+            if image.topic not in self.images:
+                self.images[image.topic] = []
+            image_info = {
+                'thumbnail': image.thumbnail,
+                'preview': image.preview,
+                'full': image.full,
+            }
+            self.images[image.topic].append(image_info)
+        # Set theme colors as a list of dicts
+        # [{'id': 2, 'color1': '#423423' etc...
+        themes = Theme.objects.all()
+        self.colors = []
+        for theme in themes:
+            self.colors.append(theme.__dict__)
+        self.fields['theme'].initial = self.colors[0]['id']
 
     def clean(self):
         return self.cleaned_data

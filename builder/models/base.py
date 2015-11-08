@@ -44,6 +44,83 @@ class Website(models.Model):
     contact_address = models.CharField(max_length=1024, blank=True)
 
 
-class Album(models.Model):
-    website = models.ForeignKey(Website)
-    title = models.CharField(max_length=255, blank=False)
+class Theme(models.Model):
+    name = models.CharField(
+        max_length=255,
+        blank=False,
+        null=True,
+        help_text='The name of the theme',
+    )
+    color1 = models.CharField(
+        max_length=7,
+        blank=False,
+        help_text='Navbar color, text color',    
+    )
+    color2 = models.CharField(
+        max_length=7,
+        blank=False,
+        help_text='Button color',    
+    )
+    color3 = models.CharField(
+        max_length=7,
+        blank=False,
+        help_text='Navbar text color / button text color',    
+    )
+    color4 = models.CharField(
+        max_length=7,
+        blank=False,
+        help_text='Link color',    
+    )
+    color5 = models.CharField(
+        max_length=7,
+        blank=False,
+        help_text='',    
+    )
+
+
+class Image(models.Model):
+
+    IMAGE_TOPIC_CHOICES = (
+        ('nature', 'Nature'),
+        ('social', 'Social'),
+        ('office', 'Office'),
+        ('night', 'Night'),
+        ('sun', 'Light'),
+    )
+    IMAGE_TYPE_CHOICES = (
+        ('bg', 'Background'),
+        ('logo', 'Logo'),
+    )
+
+    thumbnail = models.CharField(
+        max_length=1024,
+        blank=True,
+        null=True,
+        help_text='Thumbnail path',
+    )
+    preview = models.CharField(
+        max_length=1024,
+        blank=True,
+        null=True,
+        help_text='Preview image path',
+    )
+    full = models.CharField(
+        max_length=1024,
+        blank=True,
+        null=True,
+        help_text='Full sized image path',
+    )
+    topic = models.CharField(
+        choices=IMAGE_TOPIC_CHOICES,
+        max_length=64,
+        blank=True,
+        null=True,
+        help_text='Image type. ex: background, logo etc...',
+    )
+    type = models.CharField(
+        choices=IMAGE_TYPE_CHOICES,
+        max_length=64,
+        blank=True,
+        null=True,
+        help_text='Image topic. ex: business, nature etc...',
+    )

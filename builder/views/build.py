@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
 from django.conf import settings
-from builder.forms import BuildHomeForm, BuildNameForm
+from builder.forms import BuildHomeForm, BuildNameForm, BuildThemeForm
 from builder.models import Website
 
 
@@ -27,6 +27,35 @@ def is_website_id_ok(id, request):
     return True
 
 
+class BuildThemeView(View):
+    def get(self, request, *args, **kwargs):
+        website_id = int(kwargs['id'])
+        if not is_website_id_ok(website_id, request):
+            return redirect('error', 1)
+
+        build_theme_form = BuildThemeForm()
+        return render(request, 'build_theme.html', {
+            'build_theme_form': build_theme_form
+        })
+
+    #No checks made for post
+    def post(self, request, *args, **kwargs):
+        build_theme_form = BuildThemeForm(request.POST, request.FILES)
+        if not build_theme_form.is_valid():
+            return render(
+                request, 'build_theme.html', {
+                    'build_theme_form': build_theme_form
+                },
+                status=400
+            )
+        filename = kwargs['id'] + '_home_bg.jpg'
+        path = os.path.join(settings.UPLOADS_DIR, filename)
+        with open(path, 'wb+') as dest:
+            for chunk in request.FILES['background']:
+                dest.write(chunk)
+        return redirect('build_home', id=kwargs['id'])
+
+
 class BuildHomeView(View):
     def get(self, request, *args, **kwargs):
         website_id = int(kwargs['id'])
@@ -40,7 +69,6 @@ class BuildHomeView(View):
 
     #No checks made for post
     def post(self, request, *args, **kwargs):
-        build_home_form = BuildHomeForm(request.POST, request.FILES)
         if not build_home_form.is_valid():
             return render(
                 request, 'build_home.html', {
@@ -48,12 +76,7 @@ class BuildHomeView(View):
                 },
                 status=400
             )
-        filename = kwargs['id'] + '_home_bg.jpg'
-        path = os.path.join(settings.UPLOADS_DIR, filename)
-        with open(path, 'wb+') as dest:
-            for chunk in request.FILES['background']:
-                dest.write(chunk)
-        return redirect('payment', id=kwargs['id'])
+        return redirect('payment')
 
 
 class BuildNameView(View):
@@ -88,4 +111,4 @@ class BuildNameView(View):
             website.owner = request.user
         website.save()
 
-        return redirect('build_home', id=website.id)
+        return redirect('build_theme', id=website.id)

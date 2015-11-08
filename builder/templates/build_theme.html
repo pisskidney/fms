@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %} // build{% endblock title %}
+{% block container %}
+    <form id="form-build-theme" class="form-build" enctype="multipart/form-data" method="POST" action="">
+        {% csrf_token %}
+        <div class="row">
+           <div class="medium-6 medium-offset-3 end">
+               Don't worry too much about what you write here. You will be able
+               to change everything any time you wish.
+            </div>
+        </div>
+        <div class="row">
+           <div class="form-delimit medium-6 medium-offset-3 end">
+                <strong class="font">
+                    Theme selection
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-6 medium-offset-3 end">
+                <ul id="build-theme-colors" class="large-block-grid-3 small-block-grid-2 small-block-grid-3">
+                    {% for color in build_theme_form.colors %}
+                    <li{% if forloop.first %} class="selected"{% endif %} themeid="{{ color.id }}">
+                            <div class="build-theme-color-wrap">
+                                <span class="build-theme-color" color="{{ color.color1 }}" style="background-color: {{ color.color1 }}"></span>
+                                <span class="build-theme-color" color="{{ color.color2 }}" style="background-color: {{ color.color2 }}"></span>
+                                <span class="build-theme-color" color="{{ color.color3 }}" style="background-color: {{ color.color3 }}"></span>
+                                <span class="build-theme-color" color="{{ color.color4 }}" style="background-color: {{ color.color4 }}"></span>
+                                <span class="build-theme-color" color="{{ color.color5 }}" style="background-color: {{ color.color5 }}"></span>
+                            </div>
+                            <p class="build-theme-name">
+                                {{ color.name }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {{ build_theme_form.theme }}
+                {% if build_theme_form.theme.errors %}
+                    {{ build_theme_form.theme.errors }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+           <div class="form-delimit medium-6 medium-offset-3 end">
+                <strong class="font">
+                    Homepage background
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-1 medium-offset-3">
+                <ul id="build-theme-bg-topics">
+                    {% for topic in build_theme_form.images %}
+                    <li id="build-theme-bg-topic-{{ forloop.counter }}"{% if forloop.first %} class="active"{% endif %}>{{ topic }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="columns medium-5 end">
+                {% for topic, imgs in build_theme_form.images.items %}
+                <div {% if not forloop.first %} style="display: none"{% endif %} class="build-theme-bg-topic-{{ forloop.counter }}">
+                    <ul id="build-theme-bg-images" class="large-block-grid-6 medium-block-grid-4 small-block-grid-6">
+                        {% for img in imgs %}
+                        <li{% if forloop.parentloop.first and forloop.first %} class="selected"{% endif %} forpreview="{{ img.preview }}"><img src="{% static img.thumbnail %}" /></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-delimit medium-6 medium-offset-3 end">
+                <strong class="font">
+                    preview
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <div id="build-theme-preview" class="text-center medium-6 medium-offset-3 end">
+                <div id="build-theme-preview-nav">
+                    <div class="row">
+                        <div id="build-theme-preview-nav-logo" class="font columns small-offset-2 small-1">
+                            Vdly
+                        </div>
+                        <div class="columns small-offset-3 small-1">
+                            Home
+                        </div>
+                        <div class="columns small-1">
+                            Service
+                        </div>
+                        <div class="columns small-1">
+                            About
+                        </div>
+                        <div class="columns small-1 end">
+                            Contact
+                        </div>
+                    </div>
+                </div>
+                <div id="build-theme-preview-header-wrapper">
+                    <div class="row">
+                        <div id="build-theme-preview-header-title" class="text-center font columns medium-offset-3 medium-6 end">
+                            Vandelay Industries
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="build-theme-preview-header-subtitle" class="text-center columns medium-offset-3 medium-6 end">
+                            The latex manufacturing company
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center columns small-offset-5 small-2 end">
+                            <div id="build-theme-preview-header-button">Services</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="build-theme-preview-body" class="text-left columns medium-offset-2 medium-8 end">
+                        Vandelay Industries is a fictional company that George Costanza claims 
+                        to have been interviewed for as a latex salesman in when applying 
+                        for an extension at the unemployment office in the Season 
+                        Three episode, “The Boyfriend, Part 1”.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-2 medium-offset-5 end">
+                <input class="button-form" type="submit" value="Next">
+            </div>
+        </div>
+    </form>
+{% endblock container %}
