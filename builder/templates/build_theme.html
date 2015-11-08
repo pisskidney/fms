@@ -5,9 +5,10 @@
     <form id="form-build-theme" class="form-build" enctype="multipart/form-data" method="POST" action="">
         {% csrf_token %}
         <div class="row">
-           <div class="medium-6 medium-offset-3 end">
-               Don't worry too much about what you write here. You will be able
-               to change everything any time you wish.
+           <div class="info grey medium-6 medium-offset-3 end">
+               <span>i</span>
+               Don't worry too much about the settings you perform here. You can
+               change them later from your account settings page.
             </div>
         </div>
         <div class="row">
@@ -70,9 +71,15 @@
         </div>
         <div class="row">
             <div class="form-delimit medium-6 medium-offset-3 end">
-                <strong class="font">
-                    preview
-                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="columns medium-2 medium-offset-5 end">
+                <input class="button-form" type="submit" value="Next">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-delimit medium-6 medium-offset-3 end">
             </div>
         </div>
         <div class="row">
@@ -121,11 +128,6 @@
                         Three episode, “The Boyfriend, Part 1”.
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="columns medium-2 medium-offset-5 end">
-                <input class="button-form" type="submit" value="Next">
             </div>
         </div>
     </form>
