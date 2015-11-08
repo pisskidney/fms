@@ -185,16 +185,13 @@ class BuildHomeForm(forms.Form):
 class BuildThemeForm(forms.Form):
     theme = forms.CharField(
         required=True,
-        max_length=1,
+        max_length=3,
         widget=forms.HiddenInput(),
     )
-    background_preset = forms.CharField(
-        required=False,
-        max_length=2048,
+    bg = forms.CharField(
+        required=True,
+        max_length=3,
         widget=forms.HiddenInput(),
-    )
-    background_upload = forms.ImageField(
-        required=False,
     )
 
     def __init__(self, *args, **kwargs):
@@ -211,15 +208,17 @@ class BuildThemeForm(forms.Form):
                 'thumbnail': image.thumbnail,
                 'preview': image.preview,
                 'full': image.full,
+                'id': image.id,
             }
             self.images[image.topic].append(image_info)
+        self.fields['bg'].initial = 0
         # Set theme colors as a list of dicts
         # [{'id': 2, 'color1': '#423423' etc...
         themes = Theme.objects.all()
         self.colors = []
         for theme in themes:
             self.colors.append(theme.__dict__)
-        self.fields['theme'].initial = self.colors[0]['id']
+        self.fields['theme'].initial = 0
 
     def clean(self):
         return self.cleaned_data

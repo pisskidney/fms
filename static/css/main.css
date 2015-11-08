@@ -374,6 +374,7 @@ body {
     border: solid 2px #324e59;
     padding: 5px;
     border-radius: 5px;
+    cursor: default;
 }
 
 #build-theme-preview .row {

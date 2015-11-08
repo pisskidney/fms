@@ -66,6 +66,8 @@ $(function(){
     });
 
     $('#build-theme-bg-images li').click(function() {
+        // Set form value
+        $('#id_bg').val($(this).attr('bgid'))
         // Mark as selected
         $('#build-theme-bg-images .selected').removeClass('selected')
         $(this).addClass('selected')

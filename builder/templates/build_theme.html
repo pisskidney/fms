@@ -62,11 +62,15 @@
                 <div {% if not forloop.first %} style="display: none"{% endif %} class="build-theme-bg-topic-{{ forloop.counter }}">
                     <ul id="build-theme-bg-images" class="large-block-grid-6 medium-block-grid-4 small-block-grid-6">
                         {% for img in imgs %}
-                        <li{% if forloop.parentloop.first and forloop.first %} class="selected"{% endif %} forpreview="{{ img.preview }}"><img src="{% static img.thumbnail %}" /></li>
+                        <li{% if forloop.parentloop.first and forloop.first %} class="selected"{% endif %} bgid="{{ img.id }}" forpreview="{{ img.preview }}"><img src="{% static img.thumbnail %}" /></li>
                         {% endfor %}
                     </ul>
-                </div>
-                {% endfor %}
+                    {{ build_theme_form.bg }}
+                    {% if build_theme_form.bg.errors %}
+                        {{ build_theme_form.bg.errors }}
+                    {% endif %}
+                    </div>
+                    {% endfor %}
             </div>
         </div>
         <div class="row">
