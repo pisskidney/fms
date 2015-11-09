@@ -153,7 +153,7 @@ class BuildNameForm(forms.Form):
 class BuildHomeForm(forms.Form):
     title = forms.CharField(
         required=True,
-        max_length=255,
+        max_length=32,
         label='fffs',
         widget=forms.TextInput(
             attrs={'placeholder': 'ex: Vandelay Industries'}
@@ -161,7 +161,7 @@ class BuildHomeForm(forms.Form):
     )
     motto = forms.CharField(
         required=False,
-        max_length=1024,
+        max_length=64,
         widget=forms.TextInput(
             attrs={'placeholder': 'ex: Where latex meets science and design'}
         ),

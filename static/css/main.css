@@ -77,7 +77,7 @@ body {
     font-size: 12px;
 }
 
-#form-build-theme .info span {
+.info span {
     margin-right: 10px;
     float: left;
     text-align: center;
@@ -126,7 +126,6 @@ body {
 
 .button-form {
     background-color: #2ebd59;
-    border: none;
     width: 100%;
 }
 
@@ -266,7 +265,7 @@ body {
 }
 
 .form-build .row {
-    margin: 20px auto;
+    margin: 10px auto;
 }
 
 .form-delimit {
@@ -371,10 +370,14 @@ body {
 }
 
 #build-theme-preview {
-    border: solid 2px #324e59;
-    padding: 5px;
-    border-radius: 5px;
+    background-color: #fff;
+    padding: 3% 5.9% 0 5.9%;
     cursor: default;
+    background: url('/static/imgs/ipad.png') no-repeat;
+    background-size: 100%;
+    -webkit-text-shadow: 0px 0px 2px 0px #222;
+    -moz-text-shadow: 0px 0px 2px 0px #222;
+    text-shadow: 0px 0px 2px 0px #222;
 }
 
 #build-theme-preview .row {
@@ -386,24 +389,27 @@ body {
     background-color: #000;
     color: #fff;
     font-size: 8px;
+    font-size: 0.45vw;
     border-top: solid 1px #000;
     border-left: solid 1px #000;
     border-right: solid 1px #000;
 }
 
 #build-theme-preview #build-theme-preview-nav-logo {
-    border: solid 1px #4e3d2a;
-    border-radius: 6px;
+    border-radius: 3px;
+    padding: 5px;
+    border: solid 1px #f8f8f8;
+    color: #1ead29;
 }
 
 #build-theme-preview #build-theme-preview-header-wrapper {
-    min-height: 150px;
     background-size: cover;
 }
 
 #build-theme-preview #build-theme-preview-header-title {
     margin-top: 5%;
     font-size: 30px;
+    font-size: 1.9vw;
     font-weight: 600;
     color: #f8f8f8;
     -webkit-text-shadow: 2px 2px #222;
@@ -416,8 +422,8 @@ body {
     -moz-text-shadow: 1px 1px #222;
     text-shadow: 1px 1px #222;
     font-size: 16px;
+    font-size: 1vw;
     color: #e8e8e8;
-    line-height: 1.2;
     font-weight: 200;
 }
 
@@ -427,11 +433,30 @@ body {
     background: #2ebd59;
     padding: 2px 5px;
     font-size: 8px;
+    font-size: 0.5vw;
     margin-top: 5px;
+    margin-bottom: 25%;
 }
 
 #build-theme-preview #build-theme-preview-body {
+    color: transparent;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
     font-size: 8px;
+    font-size: 0.45vw;
+    margin-top: 10px;
+}
+
+#build-theme-preview #build-theme-preview-body p {
+    font-size: 8px;
+    margin: 0;
+    font-size: 0.45vw;
+}
+
+#build-theme-preview #build-theme-preview-body b {
+    font-size: 8px;
+    margin: 0;
+    font-size: 0.45vw;
+    font-weight: 900;
 }
 /******************* BUILD HOME FORM *********************/
 .form-build #id_background {
@@ -440,6 +465,8 @@ body {
 
 .form-build textarea {
     border-radius: 5px;
+    height: 150px;
+    margin: 0;
 }
 
 .form-build .small-hint {

@@ -1,5 +1,44 @@
 $(function(){
 
+    /* ------------------------ BUILD HOME ------------------------------*/
+    $(document).ready(build_set_preview)
+
+    function build_set_preview() {
+        if (typeof(build_home_data) == 'undefined') {
+            return
+        }
+        $('#build-theme-preview-header-wrapper').css(
+            'background-image',
+            'url(/static/' + build_home_data['bg']
+        )
+        $('#build-theme-preview-nav').css(
+            'background-color',
+            build_home_data['color1']
+        )
+        $('#build-theme-preview-header-button').css(
+            'background-color',
+            build_home_data['color2']
+        )
+        $('#build-theme-preview-nav').css(
+            'color',
+            build_home_data['color3']
+        )
+        $('#build-theme-preview-header-button').css(
+            'color',
+            build_home_data['color3']
+        )
+    }
+
+    $('#form-build-home #id_title').keyup(function() {
+        updated_title = $('#form-build-home #id_title').val()
+        $('#build-theme-preview-header-title').html(updated_title)
+    })
+
+    $('#form-build-home #id_motto').keyup(function() {
+        updated_motto = $('#form-build-home #id_motto').val()
+        $('#build-theme-preview-header-subtitle').html(updated_motto)
+    })
+    
     /* ------------------------ BUILD THEME ------------------------------*/
     $(document).ready(build_theme_set_preview)
 
