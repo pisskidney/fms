@@ -2,6 +2,30 @@ $(function(){
 
     /* ------------------------ BUILD HOME ------------------------------*/
     $(document).ready(build_set_preview)
+    $(document).ready(build_button_types)
+
+    function apply_css(select, css_arr) {
+        for (j=0; j<css_arr.length; j++) {
+            csskey = css_arr[j][0]
+            cssval = css_arr[j][1]
+            // replace {{colorx}} with proper colors
+            for (k=1; k<=5; k++)
+                cssval = cssval.replace('{{color'+k+'}}', build_home_data['color'+k])      
+            $(select).css(csskey, cssval)
+        }
+    }
+
+    function build_button_types() {
+        if (typeof(build_button_data) == 'undefined' || typeof(build_home_data) == 'udnefined') {
+            return
+        }
+        // Set css on buttons 
+        data = build_button_data
+        for (i=0; i<data.length; i++) {
+            select = '#build-home-buttons .button-type-' + data[i]['id']
+            apply_css(select, data[i]['css'])
+        }
+    }
 
     function build_set_preview() {
         if (typeof(build_home_data) == 'undefined') {
@@ -37,6 +61,21 @@ $(function(){
     $('#form-build-home #id_motto').keyup(function() {
         updated_motto = $('#form-build-home #id_motto').val()
         $('#build-theme-preview-header-subtitle').html(updated_motto)
+    })
+
+    $('#build-home-buttons li').click(function() {
+        // Set form value
+        $('#id_header_button').val($(this).attr('forbutt'))
+        // Mark as selected
+        $('#build-home-buttons .selected').removeClass('selected')
+        $(this).addClass('selected')
+        // Update preview
+        for (i=0; i<build_button_data.length; i++) {
+            if (build_button_data[i]['id'] == $(this).attr('forbutt')) {
+                apply_css('#build-theme-preview-header-button', build_button_data[i]['css'])
+                break
+            }
+        }
     })
     
     /* ------------------------ BUILD THEME ------------------------------*/
@@ -106,7 +145,7 @@ $(function(){
 
     $('#build-theme-bg-images li').click(function() {
         // Set form value
-        $('#id_bg').val($(this).attr('bgid'))
+        $('#form-build-theme #id_bg').val($(this).attr('bgid'))
         // Mark as selected
         $('#build-theme-bg-images .selected').removeClass('selected')
         $(this).addClass('selected')
@@ -135,7 +174,7 @@ $(function(){
         $.getJSON('/api/' + site_name, function(resp) {
             $('#build-name-img-inhouse-check').hide()
             $('#build-name-img-com-check').hide()
-            if (resp['inhouse'] == true) {
+            if (resp['subdomain'] == true) {
                 $('#build-name-img-inhouse-ok').show()
                 $('#build-name-img-inhouse-bad').hide()
                 $('#build-name-inhouse-status').html('available')
@@ -144,7 +183,7 @@ $(function(){
                 $('#build-name-img-inhouse-bad').show()
                 $('#build-name-inhouse-status').html('taken')
             }
-            if (resp['.com'] == true) {
+            if (resp[site_name+'.com'] == true) {
                 $('#build-name-img-com-ok').show()
                 $('#build-name-img-com-bad').hide()
                 $('#build-name-com-status').html('available')

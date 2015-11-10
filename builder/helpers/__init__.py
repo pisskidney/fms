@@ -1,1 +1,1 @@
-from .domain_manager import get_domain_manager
+from .domain_manager import DomainManager

@@ -113,3 +113,13 @@ STATICFILES_DIRS = (
 )
 STATICFILES_DIR = os.path.join(BASE_DIR, 'static')
 UPLOADS_DIR = os.path.join(STATICFILES_DIR, 'uploads')
+
+DOMAIN_APIS = {
+    'namecheap': {
+        'APIUSER': environ['NAMECHEAP_APIUSER'],
+        'APIKEY': environ['NAMECHEAP_APIKEY'],
+        'USERNAME': environ['NAMECHEAP_USERNAME'],
+        'CLIENTIP': environ['NAMECHEAP_CLIENTIP'],
+        'URL':  environ['NAMECHEAP_URL'],
+    }
+}

@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
 from django.conf import settings
 from builder.forms import BuildHomeForm, BuildNameForm, BuildThemeForm
-from builder.models import Website, Theme, Image
+from builder.models import Website, Theme, Image, ButtonType
 
 
 #@TODO this needs to be a decorator
@@ -85,10 +85,24 @@ class BuildHomeView(View):
 
     STAGE = 3
 
-    def init_data(self, **kwargs):
+    def build_button_type_dict(self):
+        butts = ButtonType.objects.all()
+        data = []
+        for butt in butts:
+            butt_data = {
+                'id': butt.id,
+                'name': butt.name,
+                'css': [],
+            }
+            for css in butt.css.all():
+                butt_data['css'].append([css.selector, css.rule])
+            data.append(butt_data)
+        return data
+
+    def build_preview_dict(self, **kwargs):
         website_id = kwargs['id']
         website = Website.objects.get(pk=website_id)
-        self.data = {
+        data = {
             'stage': self.STAGE,
             'bg': website.home_background.preview,
             'color1': website.theme.color1,
@@ -97,34 +111,46 @@ class BuildHomeView(View):
             'color4': website.theme.color4,
             'color5': website.theme.color5,
         }
+        return data
 
     def get(self, request, *args, **kwargs):
         website_id = int(kwargs['id'])
         if not is_website_id_ok(website_id, request, self.STAGE):
             #@TODO errors
             return redirect('error', 1)
-
-        self.init_data(**kwargs)
-
         build_home_form = BuildHomeForm()
         return render(request, 'build_home.html', {
             'build_home_form': build_home_form,
-            'data': self.data,
+            'preview_data': self.build_preview_dict(**kwargs),
+            'button_type_data': self.build_button_type_dict()
         })
 
     #No checks made for post
     def post(self, request, *args, **kwargs):
+        website_id = int(kwargs['id'])
         build_home_form = BuildHomeForm(request.POST)
+        if not is_website_id_ok(website_id, request, self.STAGE):
+            #@TODO streamline errors
+            return redirect('error', 4)
         if not build_home_form.is_valid():
-            self.init_data(**kwargs)
             return render(
                 request, 'build_home.html', {
                     'build_home_form': build_home_form,
-                    'data': self.data,
+                    'preview_data': self.build_preview_dict(**kwargs),
+                    'button_type_data': self.build_button_type_dict(),
                 },
                 status=400
             )
-        return redirect('payment', id=kwargs['id'])
+        website = Website(pk=website_id)
+        button = build_home_form.cleaned_data['header_button']
+        title = build_home_form.cleaned_data['title']
+        motto = build_home_form.cleaned_data['motto']
+        website.title = title
+        website.home_motto = motto
+        website.button_type_id = button
+        website.build_stage += 1
+        website.save()
+        return redirect('payment', id=website_id)
 
 
 class BuildNameView(View):

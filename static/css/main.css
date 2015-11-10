@@ -431,7 +431,8 @@ body {
     border-radius: 5px;
     color: #f8f8f8;
     background: #2ebd59;
-    padding: 2px 5px;
+    padding: 5px 2px;
+    padding: 0.4vw 1vw;
     font-size: 8px;
     font-size: 0.5vw;
     margin-top: 5px;
@@ -459,6 +460,27 @@ body {
     font-weight: 900;
 }
 /******************* BUILD HOME FORM *********************/
+#build-home-buttons .selected {
+    border: solid 2px #324e59;
+}
+
+#build-home-buttons .button-type {
+    padding: 10px;
+}
+
+#build-home-buttons li {
+    border: solid 2px #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+#build-home-buttons li:hover {
+    border: solid 2px #324e59;
+    cursor: hand;
+    cursor: pointer;
+}
+
 .form-build #id_background {
     height: 25px;
 }

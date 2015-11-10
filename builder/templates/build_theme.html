@@ -14,20 +14,20 @@
         </div>
         <div class="row">
             <div class="columns medium-6 medium-offset-3 end">
-                <ul id="build-theme-colors" class="large-block-grid-3 small-block-grid-2 small-block-grid-3">
+                <ul id="build-theme-colors" class="small-block-grid-3">
                     {% for color in build_theme_form.colors %}
                     <li{% if forloop.first %} class="selected"{% endif %} themeid="{{ color.id }}">
-                            <div class="build-theme-color-wrap">
-                                <span class="build-theme-color" color="{{ color.color1 }}" style="background-color: {{ color.color1 }}"></span>
-                                <span class="build-theme-color" color="{{ color.color2 }}" style="background-color: {{ color.color2 }}"></span>
-                                <span class="build-theme-color" color="{{ color.color3 }}" style="background-color: {{ color.color3 }}"></span>
-                                <span class="build-theme-color" color="{{ color.color4 }}" style="background-color: {{ color.color4 }}"></span>
-                                <span class="build-theme-color" color="{{ color.color5 }}" style="background-color: {{ color.color5 }}"></span>
-                            </div>
-                            <p class="build-theme-name">
-                                {{ color.name }}
-                            </p>
-                        </li>
+                        <div class="build-theme-color-wrap">
+                            <span class="build-theme-color" color="{{ color.color1 }}" style="background-color: {{ color.color1 }}"></span>
+                            <span class="build-theme-color" color="{{ color.color2 }}" style="background-color: {{ color.color2 }}"></span>
+                            <span class="build-theme-color" color="{{ color.color3 }}" style="background-color: {{ color.color3 }}"></span>
+                            <span class="build-theme-color" color="{{ color.color4 }}" style="background-color: {{ color.color4 }}"></span>
+                            <span class="build-theme-color" color="{{ color.color5 }}" style="background-color: {{ color.color5 }}"></span>
+                        </div>
+                        <p class="build-theme-name">
+                            {{ color.name }}
+                        </p>
+                    </li>
                     {% endfor %}
                 </ul>
                 {{ build_theme_form.theme }}

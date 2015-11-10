@@ -2,8 +2,10 @@
 {% load staticfiles %}
 {% block title %} // build{% endblock title %}
 {% block container %}
+    {% load jsonify %}
     <script>
-        var build_home_data ={ {% for k, v in data.items %}'{{k}}':'{{v}}',{% endfor %} }
+        var build_home_data ={ {% for k, v in preview_data.items %}'{{k}}':'{{v}}',{% endfor %} }
+        var build_button_data = {{ button_type_data|jsonify }}
     </script>
     <form id="form-build-home" class="form-build" method="POST" action="">
         {% csrf_token %}
@@ -40,17 +42,35 @@
         <div class="row">
             <div class="columns medium-6 medium-offset-3 end">
                 <label for="id_description">
-                    Website description (recommended)
+                    Choose button style
                 </label>
-                {{ build_home_form.description }}
-                {% if build_home_form.description.errors %}
-                    {{ build_home_form.description.errors }}
+                {{ build_home_form.header_button }}
+                {% if build_home_form.header_button.errors %}
+                    {{ build_home_form.header_button.errors }}
                 {% endif %}
+                <ul id="build-home-buttons" class="small-block-grid-4">
+                    {% for butt in button_type_data %}
+                    <li class="{% if forloop.first %}selected {% endif %}text-center lightgrey" forbutt="{{ butt.id }}">
+                        <div class="button-type button-type-{{ butt.id }}">
+                            Button
+                        </div>
+                        {{ butt.name }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+           <div class="form-delimit medium-6 medium-offset-3 end">
             </div>
         </div>
         <div class="row">
             <div class="columns medium-2 medium-offset-5 end">
                 <input class="button-form" type="submit" value="Next">
+            </div>
+        </div>
+        <div class="row">
+           <div class="form-delimit medium-6 medium-offset-3 end">
             </div>
         </div>
         {% include 'ipad_preview.html' %}

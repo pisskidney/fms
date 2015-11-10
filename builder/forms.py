@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model, authenticate
-from helpers import get_domain_manager
-from models import Theme, Image
+from helpers import DomainManager
+from models import Theme, Image, Website
 
 User = get_user_model()
 
@@ -127,17 +127,16 @@ class BuildNameForm(forms.Form):
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
-        if 'inhouse' in self.data:
-            # Check if the chosen name is indeed free as a subdomain
-            pass
-
-        elif 'com' in self.data:
-            # Check if the domain is indeed available
+        dm = DomainManager()
+        if 'subdomain' in self.data:
+            if not dm.check_subdomain(name)['subdomain']:
+                raise forms.ValidationError(
+                    'The subdomain you entered is not available'
+                )
+        elif 'domain' in self.data:
             key = name + '.com'
-            DomainManager = get_domain_manager()
-            dm = DomainManager([key])
-            dm.check_domains()
-            if not dm.is_valid(key):
+            dm = DomainManager()
+            if not dm.check_domains([key])[key]:
                 raise forms.ValidationError(
                     'The domain you selected is not available'
                 )
@@ -166,16 +165,10 @@ class BuildHomeForm(forms.Form):
             attrs={'placeholder': 'ex: Where latex meets science and design'}
         ),
     )
-    description = forms.CharField(
-        required=False,
-        max_length=2048,
-        widget=forms.Textarea(
-            attrs={'placeholder': (
-                'Vandelay Industries has been the leading manufacturer of '
-                'latex for over a decade. \nStarted in 2003, it quicly grew '
-                'to the monolith it is today.'
-            )},
-        ),
+    header_button = forms.CharField(
+        required=True,
+        max_length=2,
+        widget=forms.HiddenInput(),
     )
 
     def clean(self):
