@@ -50,6 +50,10 @@ class Image(models.Model):
         ('office', 'Office'),
         ('night', 'Night'),
         ('sun', 'Light'),
+        ('dark', 'Dark'),
+        ('fab', 'Fab'),
+        ('summer', 'Summer'),
+        ('misc', 'Misc'),
     )
     IMAGE_TYPE_CHOICES = (
         ('bg', 'Background'),

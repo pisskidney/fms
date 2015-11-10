@@ -75,20 +75,22 @@ body {
 
 .info {
     font-size: 12px;
+    padding: 0;
 }
 
-.info span {
-    margin-right: 10px;
-    float: left;
+form .row .row {
+    margin: 0;
+}
+
+.info-label {
+    width: 30px;
     text-align: center;
     font-size: 16px;
-    padding: 1% 2%;
     background-color: #324E59;
     font-family: "Lucida Console", Monaco, monospace;
     font-weight: 900;
     color: #f8f8f8;
     border-radius: 5px;
-
 }
 
 /******************* SIGNUP FORM *********************/
@@ -268,14 +270,32 @@ body {
     margin: 10px auto;
 }
 
+#form-build-theme .form-delimit .row {
+    margin: 0;
+}
+
 .form-delimit {
     border-bottom: solid 1px #ddd;
     text-align: center;
-    padding: auto 20px;
+    padding: 0;
+}
+
+.form-delimit-nr {
+    border-top: solid 1px #ddd;
+    border-left: solid 1px #ddd;
+    border-right: solid 1px #ddd;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    width: 30px;
+    background-color: #ddd;
+    color: #fff;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: 900;
+    font-size: 16px;
+    cursor: default;
 }
 
 .form-delimit strong {
-    padding: 0px 20px;
     background: #fff;
     letter-spacing: 1px;
     font-size: 12px;
@@ -313,7 +333,7 @@ body {
     padding: 5px;
     border: solid 2px #fff;
     height: 80px;
-    margin-top: 10px;
+    margin-top: 5px;
     border-radius: 5px;
 }
 

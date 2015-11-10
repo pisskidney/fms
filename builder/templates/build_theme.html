@@ -6,15 +6,22 @@
         {% csrf_token %}
         {% include "build-info.html" %}
         <div class="row">
-           <div class="form-delimit medium-6 medium-offset-3 end">
-                <strong class="font">
-                    Theme selection
-                </strong>
+            <div class="columns form-delimit medium-6 medium-offset-3 end">
+                <div class="row">
+                    <div class="columns form-delimit-nr small-1">
+                        2
+                    </div>
+                    <div class="columns small-10 end">
+                        <strong class="font">
+                            theme selection
+                        </strong>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="columns medium-6 medium-offset-3 end">
-                <ul id="build-theme-colors" class="small-block-grid-3">
+                <ul id="build-theme-colors" class="small-block-grid-2 medium-block-grid-2 large-block-grid-3">
                     {% for color in build_theme_form.colors %}
                     <li{% if forloop.first %} class="selected"{% endif %} themeid="{{ color.id }}">
                         <div class="build-theme-color-wrap">
@@ -37,24 +44,31 @@
             </div>
         </div>
         <div class="row">
-           <div class="form-delimit medium-6 medium-offset-3 end">
-                <strong class="font">
-                    Homepage background
-                </strong>
+            <div class="columns form-delimit medium-6 medium-offset-3 end">
+                <div class="row">
+                    <div class="columns form-delimit-nr small-1">
+                        3
+                    </div>
+                    <div class="columns small-10 end">
+                        <strong class="font">
+                            homepage header
+                        </strong>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="columns medium-1 medium-offset-3">
+            <div class="columns small-3 medium-2 medium-offset-3 large-1 larg-offset-1">
                 <ul id="build-theme-bg-topics">
                     {% for topic in build_theme_form.images %}
                     <li id="build-theme-bg-topic-{{ forloop.counter }}"{% if forloop.first %} class="active"{% endif %}>{{ topic }}</li>
                     {% endfor %}
                 </ul>
             </div>
-            <div class="columns medium-5 end">
+            <div class="columns small-9 medium-4 large-5 end">
                 {% for topic, imgs in build_theme_form.images.items %}
                 <div {% if not forloop.first %} style="display: none"{% endif %} class="build-theme-bg-topic-{{ forloop.counter }}">
-                    <ul id="build-theme-bg-images" class="large-block-grid-6 medium-block-grid-4 small-block-grid-6">
+                    <ul id="build-theme-bg-images" class="large-block-grid-6 medium-block-grid-4 small-block-grid-4">
                         {% for img in imgs %}
                         <li{% if forloop.parentloop.first and forloop.first %} class="selected"{% endif %} bgid="{{ img.id }}" forpreview="{{ img.preview }}"><img src="{% static img.thumbnail %}" /></li>
                         {% endfor %}
@@ -72,7 +86,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="columns medium-2 medium-offset-5 end">
+            <div class="columns small-6 small-offset-3 medium-2 medium-offset-5 end">
                 <input class="button-form" type="submit" value="Next">
             </div>
         </div>
