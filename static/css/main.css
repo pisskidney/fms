@@ -2,42 +2,63 @@ body {
     font-family: CircularLight, Helvetica, Arial, sans-serif;
 }
 
+/********************** H E A D E R **************************************/
 #header {
     background-color: #141414;
     border-color: #2e2f33;
-    height: 60px;
-    font-family: Circular, Helvetica, Arial, sans-serif;
+    height: 80px;
 }
 
 #header-links {
     background-color: #141414;
-    padding-top: 20px;
-    height: 60px;
+    height: 80px;
 }
 
 #header-links a, .header-links a:visited {
-    margin-left: 25px;
+    line-height: 80px;
+    padding: 0 10px;
+    padding: 28px 10px;
 }
 
 #header-links a:hover {
     color: #1ead29;
 }
 
+.logo-header {
+    margin-top: 20px;
+}
+
+.logo {
+    background: url('/static/imgs/logo.png') no-repeat;
+    background-size: 100px 43px;
+    width: 100px;
+    height: 43px;
+    display: block;
+}
+
+.logo:hover {
+    background: url('/static/imgs/logo-hover.png') no-repeat;
+    background-size: 100px 43px;
+    width: 100px;
+    height: 43px;
+    display: block;
+}
+
 /****************** CUSTOM TEMPLATES *****************/
 ::-webkit-input-placeholder {
-    color: #aaa;
+    color: #ccc;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-    color: #aaa;  
+    color: #ccc;  
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-    color: #aaa;  
+    color: #ccc;  
 }
 
 :-ms-input-placeholder {  
-    color: #aaa;  
+    color: #ccc;  
 }
 
 .small {
@@ -126,36 +147,10 @@ form .row .row {
     margin: 0px auto;
 }
 
-.button-form {
-    background-color: #2ebd59;
-    width: 100%;
-}
-
 .button-form:hover {
     background-color: #1ead29;
 }
 /***************************************************/
-
-.logo-header {
-    margin-top: 10px;
-}
-
-.logo {
-    background: url('/static/imgs/logo.png') no-repeat;
-    background-size: 100px 43px;
-    width: 100px;
-    height: 43px;
-    display: block;
-}
-
-.logo:hover {
-    background: url('/static/imgs/logo-hover.png') no-repeat;
-    background-size: 100px 43px;
-    width: 100px;
-    height: 43px;
-    display: block;
-}
-
 .logo-big {
     width: 200px;
     height: 86px;
@@ -201,6 +196,11 @@ form .row .row {
     border-radius: 5px;
     transition: all 0.15s ease 0s;
     color: #f8f8f8;
+    border-radius: 5px;
+    background-color: #2ebd59;
+    border: none;
+    transition: all 0.15s ease 0s;
+    width: 100%;
 }
 
 .butt:hover {
@@ -217,7 +217,6 @@ form .row .row {
     padding: 20px 30px;
     font-size: 36px;
     color: #f8f8f8;
-
 }
 
 #title {
@@ -229,6 +228,27 @@ form .row .row {
     -webkit-text-shadow: 2px 2px #222;
     -moz-text-shadow: 2px 2px #222;
     text-shadow: 2px 2px #222;
+}
+
+#build-title {
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    font-size: 48px;
+    color: #f8f8f8;
+    -webkit-text-shadow: 2px 2px #222;
+    -moz-text-shadow: 2px 2px #222;
+    text-shadow: 2px 2px #222;
+    margin-top: 50px;
+}
+
+#build-subtitle {
+    font-family: CircularLight, Helvetica, Arial, sans-serif;
+    color: #e8e8e8;
+    line-height: 1.2;
+    font-size: 26px;
+    font-weight: 200;
+    -webkit-text-shadow: 1px 1px #222;
+    -moz-text-shadow: 1px 1px #222;
+    text-shadow: 1px 1px #222;
 }
 
 #subtitle {
@@ -248,9 +268,6 @@ form .row .row {
     border-radius: 5px;
 }
 
-.button-form:hover {
-    background-color: #1ead29;
-}
 /******************* BUILD FORM COMMON *******************/
 .form-build .errorlist {
     margin: 0px auto;
@@ -303,6 +320,17 @@ form .row .row {
     font-weight: 700;
 }
 /******************* BUILD THEME FORM *********************/
+#build-theme-wrapper {
+    background: url('/static/imgs/bg-build-theme.jpg') no-repeat;
+    background-size: cover;
+    min-height: 300px;
+}
+
+#build-theme-wrapper h1 {
+    color: #2ebd59;
+    margin-top: 80px;
+}
+
 #form-build-theme .row {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -391,7 +419,7 @@ form .row .row {
 
 #build-theme-preview {
     background-color: #fff;
-    padding: 3% 5.9% 0 5.9%;
+    padding: 4.5% 9% 0 9%;
     cursor: default;
     background: url('/static/imgs/ipad.png') no-repeat;
     background-size: 100%;
@@ -408,11 +436,12 @@ form .row .row {
     padding: 5px 0;
     background-color: #000;
     color: #fff;
-    font-size: 8px;
-    font-size: 0.45vw;
+    font-size: 12px;
     border-top: solid 1px #000;
     border-left: solid 1px #000;
     border-right: solid 1px #000;
+    height: 40px;
+    padding-top: 10px;
 }
 
 #build-theme-preview #build-theme-preview-nav-logo {
@@ -428,13 +457,13 @@ form .row .row {
 
 #build-theme-preview #build-theme-preview-header-title {
     margin-top: 5%;
-    font-size: 30px;
-    font-size: 1.9vw;
+    font-size: 40px;
     font-weight: 600;
     color: #f8f8f8;
     -webkit-text-shadow: 2px 2px #222;
     -moz-text-shadow: 2px 2px #222;
     text-shadow: 2px 2px #222;
+    line-height: 1;
 }
 
 #build-theme-preview #build-theme-preview-header-subtitle {
@@ -442,41 +471,36 @@ form .row .row {
     -moz-text-shadow: 1px 1px #222;
     text-shadow: 1px 1px #222;
     font-size: 16px;
-    font-size: 1vw;
     color: #e8e8e8;
     font-weight: 200;
+    line-height: 1;
 }
 
 #build-theme-preview #build-theme-preview-header-button {
     border-radius: 5px;
     color: #f8f8f8;
     background: #2ebd59;
-    padding: 5px 2px;
-    padding: 0.4vw 1vw;
-    font-size: 8px;
-    font-size: 0.5vw;
-    margin-top: 5px;
-    margin-bottom: 25%;
+    padding: 10px 2px;
+    font-size: 12px;
+    margin: 5px auto 45% auto;
+    width: 60%; 
 }
 
 #build-theme-preview #build-theme-preview-body {
     color: transparent;
     text-shadow: 0 0 5px rgba(0,0,0,0.5);
     font-size: 8px;
-    font-size: 0.45vw;
     margin-top: 10px;
 }
 
 #build-theme-preview #build-theme-preview-body p {
     font-size: 8px;
     margin: 0;
-    font-size: 0.45vw;
 }
 
 #build-theme-preview #build-theme-preview-body b {
     font-size: 8px;
     margin: 0;
-    font-size: 0.45vw;
     font-weight: 900;
 }
 /******************* BUILD HOME FORM *********************/
@@ -516,85 +540,112 @@ form .row .row {
 }
 
 /******************* BUILD NAME FORM *********************/
-#form-build-home ::-webkit-input-placeholder {
-    color: #ccc;
+#build-name-wrapper {
+    border-top: solid 1px #000;
+    background: url('/static/imgs/bg-build-name.jpg') no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
-#form-build-home :-moz-placeholder { /* Firefox 18- */
-    color: #ccc;  
+#build-name-opaque-wrapper2 {
+    margin-top: 30px;
+    height: 100px;
 }
 
-#form-build-home ::-moz-placeholder {  /* Firefox 19+ */
-    color: #ccc;  
+#build-name-opaque-wrapper {
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-#form-build-home :-ms-input-placeholder {  
-    color: #ccc;  
-}
-
-#id_name {
-    border-radius: 5px;
+#build-name-input {
+    border-radius: 10px;
     height: 50px;
-    border-width: 2px;
-    border-color: #324e51;
+    border: solid 3px #1ead29;
     background: url('/static/imgs/find.png') no-repeat 10px;
+    background-size: 20px;
     padding-left: 50px;
-
-}
-
-#build-name-domain-options {
-    border: solid 1px #ccc;
-    border-radius: 5px;
-    display: none;
-    background-color: #f6f6f6;
-}
-
-#build-name-domain-options b {
-    color: #1ead29;
-}
-
-.build-name-price {
-    color: #324e51;
-}
-
-#build-name-domain-options input {
-    height: 40px;
-    width: 100px;
-    margin: 0;
-    border-radius: 5px;
-}
-
-.build-name-button {
-    margin-top: 5px;
-}
-
-.build-name-domain-status {
-    font-size: 9px;
-    font-family: Helvetica, Arial;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-.build-name-title {
-    font-size: 14px;
-}
-
-.build-name-subtitle {
-    font-size: 14px;
-}
-
-.build-name-domain-options-group {
-    -webkit-box-shadow: 1px 1px #bbb;
-    -moz-box-shadow: 1px 1px #bbb;
-    box-shadow: 1px 1px #bbb;
-    border: solid 1px #ccc;
-    margin: 10px;
-    padding: 10px;
     background-color: #fff;
+    margin: 20px 0;
+}
+
+.build-name-heading {
+    font-size: 18px;
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #324E59;
+}
+
+.build-name-options-data {
+    padding-top: 70px;
+    display: none;
+}
+
+.build-name-options-row {
+    padding: 20px 0;
+}
+
+.dark-wrapper {
+    background-color: #f5f5f5;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
 }
 
 .build-name-url {
-    margin-top: 15px;
+    text-align: center;
     font-size: 20px;
+    font-family: Circular, Helvetica, Arial, sans-serif;
 }
+
+.build-name-url b {
+    font-size: 20px;
+    color: #1ead29;
+}
+
+#build-name-options-wrapper {
+    font-size: 14px;
+}
+
+#build-name-options-wrapper p {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0;
+}
+
+.build-name-options-data img {
+    width: 50px;
+    height: 50px;
+}
+
+#build-name-form input.butt {
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+    margin-top: -10px;
+}
+
+.price {
+    font-size: 16px;
+    border-top: solid 5px #1ead29;
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    background-color: #2ebd59;
+    color: #f8f8f8;
+    padding: 10px;
+    display: inline-block;
+}
+
+.build-name-options-description h4 {
+    color: #565656;
+    font-family: Circular, Helvetica, Arial, sans-serif;
+}
+
+.build-name-options-description p {
+    text-align: left;
+    color: #565656;
+    font-size: 14px;
+    line-height: 20px !important;
+}
+
 /****************************************************/

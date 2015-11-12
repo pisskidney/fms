@@ -1,4 +1,5 @@
 import os
+from django.conf import settings
 from django.views.generic.base import View
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
@@ -34,6 +35,7 @@ class BuildThemeView(View):
     STAGE = 2
 
     def get(self, request, *args, **kwargs):
+        print 'THEME GET'
         website_id = int(kwargs['id'])
         if not is_website_id_ok(website_id, request, self.STAGE):
             #@TODO streamline errors
@@ -46,6 +48,7 @@ class BuildThemeView(View):
 
     #No checks made for post
     def post(self, request, *args, **kwargs):
+        print 'THEME POST'
         website_id = int(kwargs['id'])
         if not is_website_id_ok(website_id, request, self.STAGE):
             #@TODO streamline errors
@@ -100,7 +103,7 @@ class BuildHomeView(View):
         return data
 
     def build_preview_dict(self, **kwargs):
-        website_id = kwargs['id']
+        website_id = int(kwargs['id'])
         website = Website.objects.get(pk=website_id)
         data = {
             'stage': self.STAGE,
@@ -141,7 +144,7 @@ class BuildHomeView(View):
                 },
                 status=400
             )
-        website = Website(pk=website_id)
+        website = Website.objects.get(pk=website_id)
         button = build_home_form.cleaned_data['header_button']
         title = build_home_form.cleaned_data['title']
         motto = build_home_form.cleaned_data['motto']
@@ -154,10 +157,20 @@ class BuildHomeView(View):
 
 
 class BuildNameView(View):
+
+    def get_data_dict(self):
+        return {
+            'site_name': settings.SITE_NAME,
+            'price_com': settings.PRICE_COM,
+            'price_subdomain': settings.PRICE_SUBDOMAIN,
+            'price_own': settings.PRICE_OWN,
+        }
+
     def get(self, request, *args, **kwargs):
         build_name_form = BuildNameForm()
         return render(request, 'build_name.html', {
-            'build_name_form': build_name_form
+            'build_name_form': build_name_form,
+            'data': self.get_data_dict(),
         })
 
     def post(self, request, *args, **kwargs):
@@ -165,7 +178,8 @@ class BuildNameView(View):
         if not build_name_form.is_valid():
             return render(
                 request, 'build_name.html', {
-                    'build_name_form': build_name_form
+                    'build_name_form': build_name_form,
+                    'data': self.get_data_dict(),
                 },
                 status=400
             )

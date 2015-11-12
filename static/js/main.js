@@ -3,6 +3,7 @@ $(function(){
     /* ------------------------ BUILD HOME ------------------------------*/
     $(document).ready(build_set_preview)
     $(document).ready(build_button_types)
+    $(document).ready(set_default_button_type)
 
     function apply_css(select, css_arr) {
         for (j=0; j<css_arr.length; j++) {
@@ -13,6 +14,11 @@ $(function(){
                 cssval = cssval.replace('{{color'+k+'}}', build_home_data['color'+k])      
             $(select).css(csskey, cssval)
         }
+    }
+
+    function set_default_button_type() {
+        //@TODO better js granularization. check what page it is
+        $('#id_header_button').val($('#build-home-buttons .selected').attr('forbutt'))
     }
 
     function build_button_types() {
@@ -155,7 +161,7 @@ $(function(){
             'url(/static/' + $(this).attr('forpreview') + ')'
         );
     });
-    /* -------------------------------------------------------------------*/
+    /* ------------------------- BUILD NAME ---------------------------*/
 
     var timer_check_domain;
 
@@ -163,60 +169,70 @@ $(function(){
         clearTimeout(timer_check_domain);
         timer_check_domain = setTimeout(
            check_domains,
-           2000
+           1000
         )
     }
 
+    $('#build-name-input').keyup(function() {
+        $('#id_name').val($(this).val())
+    });
+
     function check_domains() {
         // make ajax call and see if domains are free
-        var site_name = $('#id_name').val();
+        var site_name = $('#build-name-input').val();
         site_name = site_name.replace(/ /g, "");
         $.getJSON('/api/' + site_name, function(resp) {
-            $('#build-name-img-inhouse-check').hide()
+            $('#build-name-img-subdomain-check').hide()
             $('#build-name-img-com-check').hide()
+
             if (resp['subdomain'] == true) {
-                $('#build-name-img-inhouse-ok').show()
-                $('#build-name-img-inhouse-bad').hide()
-                $('#build-name-inhouse-status').html('available')
+                $('#build-name-img-subdomain-ok').show()
+                $('#build-name-img-subdomain-ok').hide()
+                $('#build-name-butt-subdomain').show()
+                $('#build-name-img-subdomain-bad').hide()
             } else {
-                $('#build-name-img-inhouse-ok').hide()
-                $('#build-name-img-inhouse-bad').show()
-                $('#build-name-inhouse-status').html('taken')
+                $('#build-name-img-subdomain-ok').hide()
+                $('#build-name-img-subdomain-bad').show()
             }
             if (resp[site_name+'.com'] == true) {
                 $('#build-name-img-com-ok').show()
                 $('#build-name-img-com-bad').hide()
-                $('#build-name-com-status').html('available')
+                $('#build-name-img-com-ok').hide()
+                $('#build-name-butt-com').show()
             } else {
                 $('#build-name-img-com-ok').hide()
                 $('#build-name-img-com-bad').show()
-                $('#build-name-com-status').html('taken')
             }
         });
     }
 
-    $('#id_name').keyup(function() {
-        var site_name = $('#id_name').val();
+    $('#build-name-input').keyup(function() {
+        var site_name = $('#build-name-input').val();
         site_name = site_name.replace(/ /g, "");
         if (site_name != "") {
             // set input values
-            $('#build-name-domain-options').show();
-            $('#id_name').val(site_name);
+            $('.build-name-options-data').show()
+            $('.build-name-options-description').hide()
             $('.build-name-url b').html(site_name);
+            $(this).val(site_name)
             // set gifs and disable buttons
-            $('#build-name-img-inhouse-check').show()
-            $('#build-name-img-inhouse-ok').hide()
-            $('#build-name-img-inhouse-bad').hide()
-            $('#build-name-inhouse-status').html('checking')
+            $('#id_name').val(site_name);
+
+            $('#build-name-butt-subdomain').hide()
+            $('#build-name-butt-com').hide()
+
+            $('#build-name-img-subdomain-check').show()
+            $('#build-name-img-subdomain-ok').hide()
+            $('#build-name-img-subdomain-bad').hide()
 
             $('#build-name-img-com-check').show()
             $('#build-name-img-com-ok').hide()
             $('#build-name-img-com-bad').hide()
-            $('#build-name-com-status').html('checking')
 
             set_check_domains_timer(site_name)
         } else {
-            $('#build-name-domain-options').hide();
+            $('.build-name-options-data').hide();
+            $('.build-name-options-description').show();
         }
     });
 

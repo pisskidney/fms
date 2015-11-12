@@ -120,9 +120,7 @@ class BuildNameForm(forms.Form):
     name = forms.CharField(
         required=True,
         max_length=30,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Website name or keyword'}
-        ),
+        widget=forms.HiddenInput()
     )
 
     def clean_name(self):
@@ -133,7 +131,7 @@ class BuildNameForm(forms.Form):
                 raise forms.ValidationError(
                     'The subdomain you entered is not available'
                 )
-        elif 'domain' in self.data:
+        elif 'com' in self.data:
             key = name + '.com'
             dm = DomainManager()
             if not dm.check_domains([key])[key]:
