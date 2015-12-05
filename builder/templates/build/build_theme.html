@@ -1,0 +1,91 @@
+{% extends "bases/base.html" %}
+{% load staticfiles %}
+{% block title %} // build{% endblock title %}
+{% block container %}
+<div id="build-theme-wrapper">
+    <div class="row">
+        <div class="text-center columns medium-8 medium-offset-2 end">
+            <h1 id="build-title">Choose your colors</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center columns medium-8 medium-offset-2 end">
+            <h2 id="build-subtitle">Select initial theme. You can change it later.</h2>
+        </div>
+    </div>
+</div>
+<form id="form-build-theme" class="form-build" method="POST" action="">
+    {% csrf_token %}
+    <div class="row">
+        <div class="columns medium-3 large-2">
+            <h3 class="build-theme-options-title">Theme</h3>
+        </div>
+        <div class="columns medium-9 large-10">
+            <ul id="build-theme-colors" class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
+                {% for color in build_theme_form.colors %}
+                <li{% if forloop.first %} class="selected"{% endif %} themeid="{{ color.id }}">
+                    <div class="build-theme-color-wrap">
+                        <span class="build-theme-color" color="{{ color.color1 }}" style="background-color: {{ color.color1 }}"></span>
+                        <span class="build-theme-color" color="{{ color.color2 }}" style="background-color: {{ color.color2 }}"></span>
+                        <span class="build-theme-color" color="{{ color.color3 }}" style="background-color: {{ color.color3 }}"></span>
+                        <span class="build-theme-color" color="{{ color.color4 }}" style="background-color: {{ color.color4 }}"></span>
+                        <span class="build-theme-color" color="{{ color.color5 }}" style="background-color: {{ color.color5 }}"></span>
+                        <div class="build-theme-color-wrap-bottom"></div>
+                    </div>
+                    <p class="build-theme-name">
+                        {{ color.name }}
+                    </p>
+                </li>
+                {% endfor %}
+            </ul>
+            {{ build_theme_form.theme }}
+            {% if build_theme_form.theme.errors %}
+                {{ build_theme_form.theme.errors }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="dark-wrapper">
+        <div class="row">
+            <div class="columns medium-3 large-2">
+                <h3 class="build-theme-options-title">Header background</h3>
+            </div>
+            <div class="columns medium-9 large-10">
+                <div class="row">
+                    <div class="columns medium-12">
+                        <ul id="build-theme-bg-topics">
+                            {% for topic in build_theme_form.images %}
+                            <li id="build-theme-bg-topic-{{ forloop.counter }}"{% if forloop.first %} class="active"{% endif %}>{{ topic }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="columns medium-12">
+                        {% for topic, imgs in build_theme_form.images.items %}
+                        <div {% if not forloop.first %} style="display: none"{% endif %} class="build-theme-bg-topic-{{ forloop.counter }}">
+                            <ul id="build-theme-bg-images" class="large-block-grid-8 medium-block-grid-4 small-block-grid-4">
+                                {% for img in imgs %}
+                                <li{% if forloop.parentloop.first and forloop.first %} class="selected"{% endif %} bgid="{{ img.id }}" forpreview="{{ img.preview }}"><img src="{% static img.thumbnail %}" /></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endfor %}
+                        {{ build_theme_form.bg }}
+                        {% if build_theme_form.bg.errors %}
+                            {{ build_theme_form.bg.errors }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="columns small-6 small-offset-3 medium-2 medium-offset-5 end">
+            <input class="button-form" type="submit" value="Next">
+        </div>
+    </div>
+{% include 'build/ipad_preview.html' %}
+</form>
+{% block footer %}{% endblock %}
+{% endblock container %}

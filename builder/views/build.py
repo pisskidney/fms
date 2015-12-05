@@ -42,7 +42,7 @@ class BuildThemeView(View):
             return redirect('error', 1)
 
         build_theme_form = BuildThemeForm()
-        return render(request, 'build_theme.html', {
+        return render(request, 'build/build_theme.html', {
             'build_theme_form': build_theme_form
         })
 
@@ -56,7 +56,7 @@ class BuildThemeView(View):
         build_theme_form = BuildThemeForm(request.POST)
         if not build_theme_form.is_valid():
             return render(
-                request, 'build_theme.html', {
+                request, 'build/build_theme.html', {
                     'build_theme_form': build_theme_form
                 },
                 status=400
@@ -98,8 +98,9 @@ class BuildHomeView(View):
                 'css': [],
             }
             for css in butt.css.all():
-                butt_data['css'].append([css.selector, css.rule])
+                butt_data['css'].append([css.attr, css.val])
             data.append(butt_data)
+        print data
         return data
 
     def build_preview_dict(self, **kwargs):
@@ -122,7 +123,7 @@ class BuildHomeView(View):
             #@TODO errors
             return redirect('error', 1)
         build_home_form = BuildHomeForm()
-        return render(request, 'build_home.html', {
+        return render(request, 'build/build_home.html', {
             'build_home_form': build_home_form,
             'preview_data': self.build_preview_dict(**kwargs),
             'button_type_data': self.build_button_type_dict()
@@ -137,7 +138,7 @@ class BuildHomeView(View):
             return redirect('error', 4)
         if not build_home_form.is_valid():
             return render(
-                request, 'build_home.html', {
+                request, 'build/build_home.html', {
                     'build_home_form': build_home_form,
                     'preview_data': self.build_preview_dict(**kwargs),
                     'button_type_data': self.build_button_type_dict(),
@@ -168,7 +169,7 @@ class BuildNameView(View):
 
     def get(self, request, *args, **kwargs):
         build_name_form = BuildNameForm()
-        return render(request, 'build_name.html', {
+        return render(request, 'build/build_name.html', {
             'build_name_form': build_name_form,
             'data': self.get_data_dict(),
         })
@@ -177,7 +178,7 @@ class BuildNameView(View):
         build_name_form = BuildNameForm(request.POST)
         if not build_name_form.is_valid():
             return render(
-                request, 'build_name.html', {
+                request, 'build/build_name.html', {
                     'build_name_form': build_name_form,
                     'data': self.get_data_dict(),
                 },
@@ -190,11 +191,11 @@ class BuildNameView(View):
         elif 'own' in request.POST:
             domain_type = 3
 
-        website = Website(
-            domain_name=build_name_form.cleaned_data['name'],
-            domain_type=domain_type,
-            build_stage=2,
-        )
+        website = Website.create()
+        website.domain_name = build_name_form.cleaned_data['name']
+        website.domain_type = domain_type
+        website.build_stage = 2
+
         if request.user.is_authenticated():
             website.owner = request.user
         website.save()

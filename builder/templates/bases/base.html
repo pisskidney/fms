@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Five Minute Sites{% block title %}{% endblock title %}</title>
+        <link href="{% static 'foundation/css/normalize.css' %}" rel="stylesheet">
+        <link href="{% static 'foundation/css/foundation.css' %}" rel="stylesheet">
+        <link href="{% static 'css/main.css' %}" rel="stylesheet">
+        <script src="{% static 'foundation/js/vendor/modernizr.js' %}"></script>
+    </head>
+    <body>
+    <!-- include before <body> tag -->
+    {% block bodyincludes %}
+        <script src="{% static 'foundation/js/vendor/jquery.js' %}"></script>
+        <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
+        <script src="{% static 'foundation/js/foundation/foundation.interchange.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+    {% endblock bodyincludes %}
+    <!-- end script init -->
+        {% block header %}
+        <!-- Header -->
+        <div id="header">
+            <div class="row">
+                <div class="medium-4 columns">
+                    <a class="logo logo-header" href="/"></a>  
+                </div>
+                <div id="header-links" class="medium-8 columns text-right">
+                    <a id="button-help" class="white" href="#">Help</a>
+                    <a href="{% url 'signup' %}" class="lightgrey">Sign Up</a>
+                    <a href="{% url 'login' %}" class="lightgrey">Log In</a>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+        {% endblock header %}
+
+        {% block container %}
+        {% endblock container %}
+
+        {% block footer %}
+        <div id="footer">
+            <div class="row">
+                <div class="medium-3 columns">
+                    1
+                </div>
+                <div class="medium-3 columns">
+                    2
+                </div>
+                <div class="medium-3 columns">
+                    3
+                </div>
+                <div class="medium-3 columns">
+                    4
+                </div>
+            </div>
+        </div>
+
+        {% endblock footer %}
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>

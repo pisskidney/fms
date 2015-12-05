@@ -39,7 +39,7 @@ $(function(){
         }
         $('#build-theme-preview-header-wrapper').css(
             'background-image',
-            'url(/static/' + build_home_data['bg']
+            'url(/static/' + build_home_data['bg'] + ')'
         )
         $('#build-theme-preview-nav').css(
             'background-color',

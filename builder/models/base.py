@@ -94,28 +94,45 @@ class Image(models.Model):
     )
 
 
-class CSS(models.Model):
+class CSSBundle(models.Model):
     name = models.CharField(
         max_length=255,
         blank=True,
         null=True,
         help_text='Name of CSS rule',
     )
-    selector = models.CharField(
+    select = models.CharField(
         max_length=255,
         blank=True,
         null=True,
         help_text='Selector',
     )
-    rule = models.CharField(
+
+    def __unicode__(self):
+        return '%s // %s' % (self.name, self.select)
+
+
+class CSS(models.Model):
+    attr = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text='Selector',
+    )
+    val = models.CharField(
         max_length=2048,
         blank=True,
         null=True,
         help_text='Rule',
     )
+    bundle = models.ForeignKey(
+        'CSSBundle',
+        blank=True,
+        null=True
+    )
 
     def __unicode__(self):
-        return self.name
+        return '%s: %s' % (self.attr, self.val)
 
 
 class ButtonType(models.Model):
@@ -138,7 +155,8 @@ class Website(models.Model):
 
     owner = models.ForeignKey(
         User,
-        null=True
+        null=True,
+        related_name='websites',
     )
     build_stage = models.SmallIntegerField(
         default=1,
@@ -174,3 +192,83 @@ class Website(models.Model):
 
     contact_email = models.EmailField(max_length=255, blank=True)
     contact_address = models.CharField(max_length=1024, blank=True)
+
+    @classmethod
+    def create(cls):
+        site = cls()
+        site.save()
+        page = Page.create_default(site)
+        return site
+
+    def __str__(self):
+        return '%s. %s' % (self.id, self.domain_name)
+
+
+class Layout(models.Model):
+    CHOICES_LAYOUT_TYPE = (
+        (1, 'Home'),
+        (2, 'Services'),
+        (3, 'Album'),
+        (4, 'About'),
+        (5, 'Contact'),
+    )
+    name = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text='Layout name',
+    )
+    html = models.TextField(
+        max_length=32000,
+        blank=True,
+        null=True,
+        help_text='HTML'
+    )
+    type = models.IntegerField(
+        choices=CHOICES_LAYOUT_TYPE,
+        default=1,
+        null=True,
+        blank=True,
+    )
+
+    img = models.ForeignKey('Image', null=True, blank=True)
+    css = models.ManyToManyField('CSS', blank=True)
+
+    @classmethod
+    def default(cls):
+        default = Layout.objects.filter(name='home').filter(type=1)
+        return default[0]
+
+
+class Page(models.Model):
+    name = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text='Page name',
+    )
+    priority = models.SmallIntegerField(
+        blank=True,
+        null=True,
+    )
+    layout = models.ForeignKey('Layout')
+    website = models.ForeignKey('Website')
+    html = models.TextField(
+        max_length=32000,
+        blank=True,
+        null=True,
+        help_text='HTML'
+    )
+    css = models.ManyToManyField('CSS', blank=True)
+
+    @classmethod
+    def create_default(cls, site):
+        page = cls()
+        page.name = 'Home'
+        page.priority = 1
+        page.layout = Layout.default()
+        page.html = page.layout.html
+        page.website = site
+        page.save()
+        page.css.add(*page.layout.css.all())
+        return page

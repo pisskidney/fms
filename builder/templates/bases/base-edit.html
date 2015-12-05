@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Five Minute Sites{% block title %}{% endblock title %}</title>
+        <link href="{% static 'foundation/css/normalize.css' %}" rel="stylesheet">
+        <link href="{% static 'foundation/css/foundation.css' %}" rel="stylesheet">
+        <link href="{% static 'css/edit.css' %}" rel="stylesheet">
+        <script src="{% static 'foundation/js/vendor/modernizr.js' %}"></script>
+    </head>
+    <body>
+    <!-- include before <body> tag -->
+    {% block bodyincludes %}
+        <script src="{% static 'foundation/js/vendor/jquery.js' %}"></script>
+        <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
+        <script src="{% static 'js/edit.js' %}"></script>
+        <script src="{% static 'foundation/js/foundation/foundation.interchange.js' %}"></script>
+        {% block extrabodyincludes %}{% endblock extrabodyincludes %}
+    {% endblock bodyincludes %}
+    <!-- end script init -->
+        {% block container %}
+        {% endblock container %}
+        {% block body-end-includes %}
+        {% endblock body-end-includes %}
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>

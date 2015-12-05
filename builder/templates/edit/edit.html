@@ -1,0 +1,178 @@
+{% extends "bases/base-edit.html" %}
+{% load staticfiles %}
+{% load jsonify %}
+{% block title %} // edit{% endblock title %}
+{% block container %}
+<script type="text/javascript">
+    var pages_data = {{ pages_data|jsonify }}
+    var css = {{ css|jsonify }}
+</script>
+<div id="edit">
+    <div id="edit-header" class="row">
+        {% include 'edit/header.html' %}
+    </div>
+    <div class="row">
+        <div class="columns medium-2">
+            {% include 'edit/sidebar.html' %}
+        </div>
+        <div class="columns medium-10">
+            <div id="editor">
+                <div id="navigation" class="row">
+                    <div class="medium-4 medium-offset-2 columns">
+                        <img id="editor-logo" src="/static/imgs/layouts/default/icons/v.png" /> 
+                        <span id="editor-logo-text">Vandelay Architecture</span>
+                    </div>
+                    <div id="editor-header-links" class="medium-4 columns text-right end">
+                        <a href="#">Home</a>
+                    </div>
+                </div>
+                <div id="editor-header-wrapper">
+                    <div class="row">
+                        <div class="medium-8 medium-offset-2 end columns">
+                            <h1 id="header-title">Vandelay Architecture</h1>
+                            <h2 id="header-subtitle">The crossroad between science and passion</h2>
+                            <div id="header-button-wrapper">
+                                <a id="header-button" class="default-button" href="#">PROJECTS</a>
+                                <a id="header-button-arrow" class="default-button-arrow" href="#">></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row info-box">
+                    <div class="columns medium-4 medium-offset-2">
+                        <div class="row">
+                            <div class="columns medium-3 text-center">
+                                <img id="info-icon-1" class="info-icon" src="/static/imgs/layouts/default/icons/15809-NQHXUG_63.png" />
+                            </div>
+                            <div class="columns medium-9">
+                                <h6 id="info-title-1" class="info-title">OUR MANTRA</h6>
+                                <p id="info-text-1" class="info-text">
+                                    Established in 1982, Vandelay
+                                    Architecture completed over a
+                                    thousand projects of all sizes.  Our
+                                    commitment to excellence is our
+                                    firms main focus since the
+                                    beggining.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns medium-4 end">
+                        <div class="row">
+                            <div class="columns medium-3 text-center">
+                                <img id="info-icon-2" class="info-icon" src="/static/imgs/layouts/default/icons/15809-NQHXUG_60.png" />
+                            </div>
+                            <div class="columns medium-9">
+                                <h6 id="info-title-2" class="info-title">FAST DELIVERY</h6>
+                                <p id="info-text-2" class="info-text">
+                                    All our projects are completed
+                                    in record times due to our tight
+                                    knit team of all degrees of
+                                    experience.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row info-box">
+                    <div class="columns medium-4 medium-offset-2">
+                        <div class="row">
+                            <div class="columns medium-3 text-center">
+                                <img id="info-icon-3" class="info-icon" src="/static/imgs/layouts/default/icons/15809-NQHXUG_50.png" />
+                            </div>
+                            <div class="columns medium-9">
+                                <h6 id="info-title-3" class="info-title">YOUR TITLE HERE</h6>
+                                <p id="info-text-3" class="info-text">
+                                    Click here to change me. I am a placeholder
+                                    paragraph that has no values or meaning.
+                                    Don't be affraid to change that. Like I
+                                    said, just click me and let's get this over
+                                    with.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns medium-4 end">
+                        <div class="row">
+                            <div class="columns medium-3 text-center">
+                                <img id="info-icon-4" class="info-icon" src="/static/imgs/layouts/default/icons/15809-NQHXUG_45.png" />
+                            </div>
+                            <div class="columns medium-9">
+                                <h6 id="info-title-4" class="info-title">YOUR TITLE HERE</h6>
+                                <p id="info-text-4" class="info-text">
+                                    Click here to change me. I am a placeholder
+                                    paragraph that has no values or meaning.
+                                    Don't be affraid to change that. Like I
+                                    said, just click me and let's get this over
+                                    with.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pitch-wrapper">
+                    <div class="row">
+                        <div class="columns large-4 large-offset-2">
+                            <h3 id="pitch-text-1">Where Design meets Science meets Heart</h3>
+                            <h4 id="pitch-text-2">With over 12 years of experience, architecture does
+                                not get any better than this.
+                            </h4>
+                            <div id="pitch-button-wrapper">
+                                <a id="pitch-button" class="default-button" href="#">CONTACT US</a>
+                                <a id="pitch-button-arrow" class="default-button-arrow" href="#">></a>
+                            </div>
+                        </div>
+                       <div class="text-center columns large-4 end">
+                            <div id="pitch-img-wrapper" class="container">
+                                <img id="pitch-img-1" src="/static/imgs/layouts/default/mac_frame.png" />
+                                <img id="pitch-img-2" src="/static/imgs/layouts/default/archicad_screenshot.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="portfolio-wrapper">
+                    <div class="row">
+                        <div class="columns large-2 large-offset-3">
+                            <img id="portfolio-img-1" class="portfolio-img" src="/static/imgs/layouts/default/house.png" />
+                            <h5 id="portfolio-title-1" class="portfolio-title">EXTERIOR DESIGN</h5>
+                            <p id="portfolio-descr-1" class="portfolio-descr">Click 'edit text' and write something that describes your business here.</p>
+                        </div>
+                        <div class="columns large-2">
+                            <img id="portfolio-img-2" class="portfolio-img" src="/static/imgs/layouts/default/in.png" />
+                            <h5 id="portfolio-title-2" class="portfolio-title">INTERIOR DESIGN</h5>
+                            <p id="portfolio-descr-2" class="portfolio-descr">Click 'edit text' and write something that describes your business here.</p>
+                        </div>
+                        <div class="columns large-2 end">
+                            <img id="portfolio-img-3" class="portfolio-img" src="/static/imgs/layouts/default/out.png" />
+                            <h5 id="portfolio-title-3" class="portfolio-title">LANDSCAPING</h5>
+                            <p id="portfolio-descr-3" class="portfolio-descr">Click 'edit text' and write something that describes your business here.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer-wrapper">
+                    <div class="row">
+                        <div class="medium-3 medium-offset-2 columns">
+                            <p id="footer-intouch" class="footer-title">GET IN TOUCH</p>
+                            <p id="footer-phone" class="footer-text">1800-123-4567</p>
+                            <p id="footer-email" class="footer-text">youremail@provider.com</p>
+                            <p id="footer-email" class="footer-text">101 Howard Street, San Francisco, CA 94105</p>
+                        </div>
+                        <div class="medium-3 columns">
+                            <p id="footer-follow" class="footer-title">FOLLOW US</p>
+                            <div id="footer-social">
+                                <a href="#"><img id="footer-social-image-1" class="footer-social-image" src="/static/imgs/layouts/default/icons/social/facebook.png" /></a>
+                                <a href="#"><img id="footer-social-image-2" class="footer-social-image" src="/static/imgs/layouts/default/icons/social/google.png" /></a>
+                                <a href="#"><img id="footer-social-image-3" class="footer-social-image" src="/static/imgs/layouts/default/icons/social/twitter.png" /></a>
+                                <a href="#"><img id="footer-social-image-4" class="footer-social-image" src="/static/imgs/layouts/default/icons/social/youtube.png" /></a>
+                            </div>
+                        </div>
+                        <div class="medium-2 columns end">
+                            <p id="footer-copyright" class="footer-title">© 2015 Vandelay Industries</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock container %}

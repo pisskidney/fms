@@ -1,0 +1,35 @@
+{% extends "bases/base.html" %}
+{% load staticfiles %}
+{% block title %} // my sites{% endblock title %}
+{% block container %}
+<div id="home-sites-wrapper">
+    <div class="row">
+        <div class="text-center columns medium-8 medium-offset-2 end">
+            <h1 id="build-title">My Websites</h1>
+        </div>
+    </div>
+</div>
+<div class="home-sites-add row">
+    <div class="columns medium-8 medium-offset-2 end">
+        <a class="butt-alt" href="{% url 'build_name' %}">+ Add Site</a>
+    </div>
+</div>
+<div id="home-sites">
+    <div class="row">
+        <div class="columns medium-8 medium-offset-2 end">
+            {% for id, site_info in sites.items %}
+                <div class="row home-sites-row">
+                    <div class="columns small-8">
+                        <h4>{{ site_info.name }}</h4>
+                        <h6>{{ site_info.url }}</h6>
+                    </div>
+                    <div class="columns small-4 text-right">
+                        <a class="home-sites-edit-button" href="{% url 'edit' id %}">Edit Site</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock container %}

@@ -1,0 +1,25 @@
+<div class="columns medium-1">
+    5
+</div>
+<div id="page-select" class="columns medium-2">
+    <a data-dropdown="page-select-dropdown" aria-controls="page-select-dropdown" aria-expanded="false">Page: {{ pages_data.0.name }}</a>
+    <ul id="page-select-dropdown" class="f-dropdown" data-dropdown-content tabindex="-1" aria-hidden="true" aria-autoclose="false" tabindex="-1">
+        {% for page in pages_data %}
+            {% if forloop.counter != 1 %}
+                <li><a href="{% url 'edit' website_id page.id %}">{{ page.name }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+<div class="columns medium-6">
+    Screen Size 
+</div>
+<div class="columns medium-1">
+    Save
+</div>
+<div class="columns medium-1">
+    Preview
+</div>
+<div class="columns medium-1">
+    Publish
+</div>

@@ -14,9 +14,9 @@ class PaymentView(View):
         website = Website.objects.get(pk=kwargs['id'])
         website.owner = request.user
         website.save()
-
         
-        return render(request, 'payment.html')
+        #@TODO For now just redirect
+        return redirect('home')
 
     def post(self, request, *args, **kwargs):
         return redirect('payment')

@@ -192,6 +192,20 @@ form .row .row {
     src: url('/static/fonts/circular-light.woff');
 }
 
+.butt-alt, .butt-alt {
+    border: solid 1px #ccc;
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    color: #666;
+    padding: 10px 30px;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.butt-alt:hover {
+    border: solid 1px #666;
+    color: #666;
+}
+
 .butt, .butt:visited {
     border-radius: 5px;
     transition: all 0.15s ease 0s;
@@ -320,6 +334,12 @@ form .row .row {
     font-weight: 700;
 }
 /******************* BUILD THEME FORM *********************/
+.build-theme-options-title {
+    font-size: 32px;
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    color: #565656;
+}
+
 #build-theme-wrapper {
     background: url('/static/imgs/bg-build-theme.jpg') no-repeat;
     background-size: cover;
@@ -332,8 +352,12 @@ form .row .row {
 }
 
 #form-build-theme .row {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#form-build-theme > .row {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #build-theme-colors .build-theme-color {
@@ -347,6 +371,16 @@ form .row .row {
     border: solid 1px #aaa;
     width: 100%;
     height: 52px;
+    position: relative;
+}
+
+.build-theme-color-wrap-bottom {
+    height: 10px;
+    background-color: rgba(0, 0, 0, .2);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #build-theme-colors {
@@ -376,7 +410,7 @@ form .row .row {
 }
 
 #build-theme-bg-images img {
-    width: 75px;
+    width: 100px;
 }
 
 #build-theme-bg-images .selected {
@@ -388,15 +422,15 @@ form .row .row {
     background-color: #324e59;
 }
 
-#build-theme-bg-topics {
+ul#build-theme-bg-topics {
     list-style: none;
     margin: 0;
+    margin-bottom: 20px;
 }
 
 #build-theme-bg-topics li {
-    padding-left: 5px;
-    font-size: 12px;
-    border-radius: 0px 10px 10px 0px;
+    display: inline;
+    padding: 10px;
 }
 
 #build-theme-bg-topics li:hover {
@@ -406,8 +440,8 @@ form .row .row {
 
 #build-theme-bg-images li {
     text-align: center;
-    padding: 1%;
-    border: solid 2px #fff;
+    padding: 5px;
+    border: solid 2px transparent;
     border-radius: 5px;
 }
 
@@ -418,7 +452,6 @@ form .row .row {
 }
 
 #build-theme-preview {
-    background-color: #fff;
     padding: 4.5% 9% 0 9%;
     cursor: default;
     background: url('/static/imgs/ipad.png') no-repeat;
@@ -452,7 +485,9 @@ form .row .row {
 }
 
 #build-theme-preview #build-theme-preview-header-wrapper {
+    background: none;
     background-size: cover;
+    background-image: url('/static/imgs/bg/bar1.jpg');
 }
 
 #build-theme-preview #build-theme-preview-header-title {
@@ -504,6 +539,17 @@ form .row .row {
     font-weight: 900;
 }
 /******************* BUILD HOME FORM *********************/
+#build-home-wrapper {
+    background: url('/static/imgs/bg-build-home.jpg') no-repeat;
+    background-size: cover;
+    min-height: 160px;
+}
+
+.build-home-options-title {
+    font-family: CircularLight, Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+}
+
 #build-home-buttons .selected {
     border: solid 2px #324e59;
 }
@@ -647,5 +693,83 @@ form .row .row {
     font-size: 14px;
     line-height: 20px !important;
 }
+/********************* HOME SITES *******************/
+#home-sites-wrapper {
+    border-top: solid 1px #000;
+    background: url('/static/imgs/bg-home-sites.jpg') no-repeat;
+    background-size: cover;
+    position: relative;
+    min-height: 300px;
+}
 
+#home-sites-wrapper h1 {
+    margin-top: 100px;
+    font-size: 72px;
+}
+
+#home-sites h1, h2, h3, h4, h5, h6 {
+    font-family: CircularLight, Helvetica, Arial, sans-serif;
+}
+
+#home-sites .home-sites-row {
+    margin: 10px 0;
+    padding: 10px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.2);
+
+}
+
+#home-sites {
+    background-color: #f5f5f5;
+    border-top: solid 1px #ddd;
+}
+
+#home-sites h4 {
+    font-size: 32px;
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #585858;
+}
+
+a.home-sites-edit-button {
+    display: inline-block;
+    margin-top: 10px;
+    border-bottom: solid 1px #188721;
+    color: #f8f8f8;
+    background-color: #1ead29;
+    font-family: Circular, Helvetica, Arial, sans-serif;
+    padding: 10px 30px;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+a.home-sites-edit-button:hover {
+    background-color: #47c751;
+}
+
+div.home-sites-add {
+    margin: 10px auto;
+
+}
 /****************************************************/
+
+
+/********************** EDIT **********************************************/
+/********************** EDIT **********************************************/
+/********************** EDIT **********************************************/
+
+#edit .row {
+    max-width: 2500px;
+    border: solid 1px red;
+    padding: 0;
+}
+
+#edit .columns {
+    border: solid 1px blue;
+}
+
+div#edit-header {
+    background-color: #4b4b4b;
+    color: #f5f5f5;
+}

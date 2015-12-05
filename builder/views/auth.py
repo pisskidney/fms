@@ -8,7 +8,7 @@ from builder.forms import SignupForm, LoginForm
 class SignupView(View):
     def get(self, request, *args, **kwargs):
         signup_form = SignupForm()
-        return render(request, 'signup.html', {
+        return render(request, 'auth/signup.html', {
             'signup_form': signup_form
         })
 
@@ -16,7 +16,7 @@ class SignupView(View):
         signup_form = SignupForm(request.POST)
         if not signup_form.is_valid():
             return render(
-                request, 'signup.html', {
+                request, 'auth/signup.html', {
                     'signup_form': signup_form
                 },
                 status=400
@@ -37,7 +37,7 @@ class LoginView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         login_form = LoginForm()
-        return render(request, 'login.html', {
+        return render(request, 'auth/login.html', {
             'login_form': login_form
         })
 
@@ -45,7 +45,7 @@ class LoginView(View):
         login_form = LoginForm(request.POST)
         if not login_form.is_valid():
             return render(
-                request, 'login.html', {
+                request, 'auth/login.html', {
                     'login_form': login_form
                 },
                 status=400
